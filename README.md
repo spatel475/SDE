@@ -1,1 +1,1 @@
-## Settlement Made Easy Readme
+## Settlement Made Easy
