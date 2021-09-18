@@ -27,9 +27,6 @@ Obj/
 # Visual Studio 2015 cache/options directory
 .vs/
 
-# Jetbrains Rider cache/options directory
-.idea/
-
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -232,6 +229,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-/NDependOut
-/CleanArchitecture.ndproj
-/.mfractor
