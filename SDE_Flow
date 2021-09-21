@@ -1,9 +1,80 @@
-<mxfile host="app.diagrams.net" modified="2021-09-21T20:08:27.388Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="RFnJMT9ZshJJ5n3Ur6XQ" version="14.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-21T20:26:36.539Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="IlUqnSj5Gn_jrtZkzOSM" version="14.1.2" type="github">
   <diagram id="lfC0ByhFtauwIvqrp0FH" name="Page-1">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fontStyle=1" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-1" target="SNT6MA-h6-7q7fv9C6IQ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-1" value="INSURANCE UPLOADS TEMPLATE" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fontStyle=1" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-2" target="SNT6MA-h6-7q7fv9C6IQ-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-2" value="INSURANCE UPLOADS TEMPLATE" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-4" value="INSURANCE SENDS TO LAWYER" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fontStyle=1" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-6" target="SNT6MA-h6-7q7fv9C6IQ-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;fontStyle=1" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-6" target="SNT6MA-h6-7q7fv9C6IQ-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-6" value="LAWYER CHECKS DOCUMENT" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-8" target="SNT6MA-h6-7q7fv9C6IQ-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-8" value="LAWYER APPROVES" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="240" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-10" value="LAWYER REJECTS DOCUMENT" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-12" target="SNT6MA-h6-7q7fv9C6IQ-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-12" value="LAWYER SENDS TO INSURANCE" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-14" target="SNT6MA-h6-7q7fv9C6IQ-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-14" target="SNT6MA-h6-7q7fv9C6IQ-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-14" value="INSURANCE SENDS TO CLIENT" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-16" target="SNT6MA-h6-7q7fv9C6IQ-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-16" value="CLIENT APPROVES" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-18" value="CLIENT REJECTS" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-20" value="TRANSMIT PAYMENTS" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="840" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SNT6MA-h6-7q7fv9C6IQ-22" value="" style="endArrow=classic;html=1;strokeWidth=3;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="SNT6MA-h6-7q7fv9C6IQ-4" target="SNT6MA-h6-7q7fv9C6IQ-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="300" as="sourcePoint" />
+            <mxPoint x="140" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="660" y="150" />
+              <mxPoint x="660" y="220" />
+              <mxPoint x="100" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
