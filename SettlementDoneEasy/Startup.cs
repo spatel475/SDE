@@ -6,13 +6,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SDE_Serve;
 using SDE_Server.Hubs;
 using SDE_Server.Infrastructure;
+using System;
 
 namespace SDE_Server
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +30,18 @@ namespace SDE_Server
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins(AppSettings.GetSettings().CorsAllowedAccess)
+                                           .AllowAnyMethod()
+                                           .AllowAnyHeader()
+                                           .AllowCredentials();
+                                  });
             });
 
             #region Controller/SignalR
@@ -63,9 +78,10 @@ namespace SDE_Server
             }
 
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ServerHub>("/serverhub");
+                endpoints.MapHub<ServerHub>("/hub");
             });
 
             app.UseEndpoints(endpoints =>

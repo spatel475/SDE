@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using SDE_Serve;
+using SDE_Server.Models;
+using System;
 
 namespace SDE_Server
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+            Console.WriteLine(JsonConvert.SerializeObject(AppSettings.GetSettings()));
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -14,7 +20,9 @@ namespace SDE_Server
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("https://" + AppSettings.GetSettings().SDE_ServerHost+ ":" + AppSettings.GetSettings().SDE_ServerPort);
                     webBuilder.UseStartup<Startup>();
                 });
+            
     }
 }
