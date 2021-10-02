@@ -12,7 +12,7 @@ namespace SDE_Server.Domain.Entities
             DocumentTemplates = new HashSet<DocumentTemplate>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Machine { get; set; }
 
         public virtual ICollection<DocumentTemplate> DocumentTemplates { get; set; }

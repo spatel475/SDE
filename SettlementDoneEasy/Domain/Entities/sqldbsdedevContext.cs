@@ -43,24 +43,18 @@ namespace SDE_Server.Domain.Entities
             {
                 entity.ToTable("Document");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Data).IsUnicode(false);
 
-                entity.Property(e => e.TemplateId).HasColumnName("TemplateID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
                 entity.HasOne(d => d.Template)
                     .WithMany(p => p.Documents)
-                    .HasForeignKey(d => d.TemplateId)
+                    .HasForeignKey(d => d.TemplateID)
                     .HasConstraintName("FK_Document_DocumentTemplate");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Documents)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_Document.UserID");
             });
 
@@ -68,33 +62,27 @@ namespace SDE_Server.Domain.Entities
             {
                 entity.ToTable("DocumentAudit");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
                 entity.Property(e => e.FlowState).IsUnicode(false);
 
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentAudits)
-                    .HasForeignKey(d => d.DocId)
+                    .HasForeignKey(d => d.DocID)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 
             modelBuilder.Entity<DocumentDatum>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
-                entity.HasOne(d => d.IdNavigation)
+                entity.HasOne(d => d.IDNavigation)
                     .WithOne(p => p.DocumentDatum)
-                    .HasForeignKey<DocumentDatum>(d => d.Id)
+                    .HasForeignKey<DocumentDatum>(d => d.ID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentData_Document");
             });
@@ -103,11 +91,7 @@ namespace SDE_Server.Domain.Entities
             {
                 entity.ToTable("DocumentTemplate");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.OrganizationId).HasColumnName("OrganizationID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.HasOne(d => d.CreatorNavigation)
                     .WithMany(p => p.DocumentTemplates)
@@ -121,37 +105,29 @@ namespace SDE_Server.Domain.Entities
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.DocumentTemplates)
-                    .HasForeignKey(d => d.OrganizationId)
+                    .HasForeignKey(d => d.OrganizationID)
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
             });
 
             modelBuilder.Entity<DocumentTemplateDatum>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.Property(e => e.TemplateId).HasColumnName("TemplateID");
             });
 
             modelBuilder.Entity<DocumentUser>(entity =>
             {
                 entity.ToTable("DocumentUser");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentUsers)
-                    .HasForeignKey(d => d.DocId)
+                    .HasForeignKey(d => d.DocID)
                     .HasConstraintName("FK_DocumentUser_Document");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.DocumentUsers)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_DocumentUser.UserID");
             });
 
@@ -159,9 +135,7 @@ namespace SDE_Server.Domain.Entities
             {
                 entity.ToTable("FlowTemplate");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Machine)
                     .HasMaxLength(50)
@@ -172,9 +146,7 @@ namespace SDE_Server.Domain.Entities
             {
                 entity.ToTable("Organization");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Name).IsUnicode(false);
 
@@ -183,19 +155,15 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Email).IsUnicode(false);
-
-                entity.Property(e => e.OrganizationId).HasColumnName("OrganizationID");
 
                 entity.Property(e => e.Username).IsUnicode(false);
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.OrganizationId)
+                    .HasForeignKey(d => d.OrganizationID)
                     .HasConstraintName("FK_Users.OrganizationID");
             });
 

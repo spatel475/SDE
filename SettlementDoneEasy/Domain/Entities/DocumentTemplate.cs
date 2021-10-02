@@ -12,8 +12,8 @@ namespace SDE_Server.Domain.Entities
             Documents = new HashSet<Document>();
         }
 
-        public int Id { get; set; }
-        public int? OrganizationId { get; set; }
+        public int ID { get; set; }
+        public int? OrganizationID { get; set; }
         public int? Creator { get; set; }
         public int? FlowTemplate { get; set; }
         public byte[] Data { get; set; }

@@ -13,10 +13,10 @@ namespace SDE_Server.Domain.Entities
             DocumentUsers = new HashSet<DocumentUser>();
         }
 
-        public int Id { get; set; }
-        public int? UserId { get; set; }
+        public int ID { get; set; }
+        public int? UserID { get; set; }
         public string Data { get; set; }
-        public int? TemplateId { get; set; }
+        public int? TemplateID { get; set; }
 
         public virtual DocumentTemplate Template { get; set; }
         public virtual User User { get; set; }
