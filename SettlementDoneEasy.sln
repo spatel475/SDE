@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDE_Server", "SettlementDoneEasy\SDE_Server.csproj", "{E9455B36-8894-40C0-A083-EA84A7ED2CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDE_Server", "SettlementDoneEasy\SDE_Server.csproj", "{E9455B36-8894-40C0-A083-EA84A7ED2CCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{53015554-C421-4698-BE48-F2D440E53A29}"
+	ProjectSection(SolutionItems) = preProject
+		CreateDatabaseEntities.md = CreateDatabaseEntities.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
