@@ -13,6 +13,7 @@ namespace SDE_Server
         public string SDE_ServerHost;
         public string SDE_ServerPort;
         public string[] CorsAllowedAccess;
+        public string DBConnectionString;
         public static AppSettings GetSettings()
         {
             return JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Environment.CurrentDirectory + "\\appsettings.json"));

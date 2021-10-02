@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SDE_Server.Domain.Entities;
 using SDE_Server.Hubs;
-using SDE_Server.Infrastructure;
 
 namespace SDE_Server
 {
@@ -47,8 +47,8 @@ namespace SDE_Server
             #endregion
 
             #region DB 
-            services.AddScoped<DbContext, SDEDBContext>();
-            services.AddDbContext<SDEDBContext>(option => option.UseSqlServer("Server=Your-Server-Name\\SQLExpress;Database=yourDatabaseName;Trusted_Connection=True;"));
+            services.AddScoped<DbContext, sqldbsdedevContext>();
+            services.AddDbContext<sqldbsdedevContext>();
             #endregion
 
         }

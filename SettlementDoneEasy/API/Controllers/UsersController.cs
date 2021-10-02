@@ -2,17 +2,17 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using SDE_Server.Domain.Entities;
 using SDE_Server.Hubs;
-using SDE_Server.Infrastructure;
 
 namespace SDE_Server.API.Controllers
 {
     public class UsersController : Controller
     {
         private readonly IHubContext<ServerHub> _hubContext;
-        private readonly SDEDBContext _context;
+        private readonly sqldbsdedevContext _context;
 
-        public UsersController(SDEDBContext context, IHubContext<ServerHub> hubContext)
+        public UsersController(sqldbsdedevContext context, IHubContext<ServerHub> hubContext)
         {
             _context = context;
             _hubContext = hubContext;
