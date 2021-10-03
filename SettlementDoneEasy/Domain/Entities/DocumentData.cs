@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class DocumentDatum
+    public partial class DocumentData
     {
         public int ID { get; set; }
         public byte[] AdjustedData { get; set; }

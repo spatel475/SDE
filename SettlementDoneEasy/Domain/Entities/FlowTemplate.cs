@@ -9,12 +9,12 @@ namespace SDE_Server.Domain.Entities
     {
         public FlowTemplate()
         {
-            DocumentTemplates = new HashSet<DocumentTemplate>();
+            DocumentTemplate = new HashSet<DocumentTemplate>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Machine { get; set; }
 
-        public virtual ICollection<DocumentTemplate> DocumentTemplates { get; set; }
+        public virtual ICollection<DocumentTemplate> DocumentTemplate { get; set; }
     }
 }

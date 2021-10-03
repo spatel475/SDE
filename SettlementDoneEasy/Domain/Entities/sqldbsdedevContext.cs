@@ -17,21 +17,22 @@ namespace SDE_Server.Domain.Entities
         {
         }
 
-        public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<DocumentAudit> DocumentAudits { get; set; }
-        public virtual DbSet<DocumentDatum> DocumentData { get; set; }
-        public virtual DbSet<DocumentTemplate> DocumentTemplates { get; set; }
-        public virtual DbSet<DocumentTemplateDatum> DocumentTemplateData { get; set; }
-        public virtual DbSet<DocumentUser> DocumentUsers { get; set; }
-        public virtual DbSet<FlowTemplate> FlowTemplates { get; set; }
-        public virtual DbSet<Organization> Organizations { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Document> Document { get; set; }
+        public virtual DbSet<DocumentAudit> DocumentAudit { get; set; }
+        public virtual DbSet<DocumentData> DocumentData { get; set; }
+        public virtual DbSet<DocumentTemplate> DocumentTemplate { get; set; }
+        public virtual DbSet<DocumentTemplateData> DocumentTemplateData { get; set; }
+        public virtual DbSet<DocumentUser> DocumentUser { get; set; }
+        public virtual DbSet<FlowTemplate> FlowTemplate { get; set; }
+        public virtual DbSet<Organization> Organization { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(AppSettings.GetSettings().DBConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=sqldb-sde.hastings-network.com;Database=sqldb-sde-dev;User Id=svc-sde-dev;Password=W3HUOsZI9GJ4QsPIfgmT");
             }
         }
 
@@ -41,127 +42,91 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Document>(entity =>
             {
-                entity.ToTable("Document");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Data).IsUnicode(false);
 
-                entity.Property(e => e.TemplateId).HasColumnName("TemplateID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
                 entity.HasOne(d => d.Template)
-                    .WithMany(p => p.Documents)
-                    .HasForeignKey(d => d.TemplateId)
+                    .WithMany(p => p.Document)
+                    .HasForeignKey(d => d.TemplateID)
                     .HasConstraintName("FK_Document_DocumentTemplate");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Documents)
-                    .HasForeignKey(d => d.UserId)
+                    .WithMany(p => p.Document)
+                    .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_Document.UserID");
             });
 
             modelBuilder.Entity<DocumentAudit>(entity =>
             {
-                entity.ToTable("DocumentAudit");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
                 entity.Property(e => e.FlowState).IsUnicode(false);
 
                 entity.HasOne(d => d.Doc)
-                    .WithMany(p => p.DocumentAudits)
-                    .HasForeignKey(d => d.DocId)
+                    .WithMany(p => p.DocumentAudit)
+                    .HasForeignKey(d => d.DocID)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 
-            modelBuilder.Entity<DocumentDatum>(entity =>
+            modelBuilder.Entity<DocumentData>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.DocumentDatum)
-                    .HasForeignKey<DocumentDatum>(d => d.Id)
+                entity.HasOne(d => d.IDNavigation)
+                    .WithOne(p => p.DocumentData)
+                    .HasForeignKey<DocumentData>(d => d.ID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentData_Document");
             });
 
             modelBuilder.Entity<DocumentTemplate>(entity =>
             {
-                entity.ToTable("DocumentTemplate");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.OrganizationId).HasColumnName("OrganizationID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.HasOne(d => d.CreatorNavigation)
-                    .WithMany(p => p.DocumentTemplates)
+                    .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.Creator)
                     .HasConstraintName("FK_DocumentTemplate_Users");
 
                 entity.HasOne(d => d.FlowTemplateNavigation)
-                    .WithMany(p => p.DocumentTemplates)
+                    .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.FlowTemplate)
                     .HasConstraintName("FK_DocumentTemplate_FlowTemplate");
 
                 entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.DocumentTemplates)
-                    .HasForeignKey(d => d.OrganizationId)
+                    .WithMany(p => p.DocumentTemplate)
+                    .HasForeignKey(d => d.OrganizationID)
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
             });
 
-            modelBuilder.Entity<DocumentTemplateDatum>(entity =>
+            modelBuilder.Entity<DocumentTemplateData>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.Property(e => e.TemplateId).HasColumnName("TemplateID");
             });
 
             modelBuilder.Entity<DocumentUser>(entity =>
             {
-                entity.ToTable("DocumentUser");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Doc)
-                    .WithMany(p => p.DocumentUsers)
-                    .HasForeignKey(d => d.DocId)
+                    .WithMany(p => p.DocumentUser)
+                    .HasForeignKey(d => d.DocID)
                     .HasConstraintName("FK_DocumentUser_Document");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.DocumentUsers)
-                    .HasForeignKey(d => d.UserId)
+                    .WithMany(p => p.DocumentUser)
+                    .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_DocumentUser.UserID");
             });
 
             modelBuilder.Entity<FlowTemplate>(entity =>
             {
-                entity.ToTable("FlowTemplate");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Machine)
                     .HasMaxLength(50)
@@ -170,32 +135,24 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Organization>(entity =>
             {
-                entity.ToTable("Organization");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Name).IsUnicode(false);
 
                 entity.Property(e => e.Type).IsUnicode(false);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Users>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).ValueGeneratedNever();
 
                 entity.Property(e => e.Email).IsUnicode(false);
-
-                entity.Property(e => e.OrganizationId).HasColumnName("OrganizationID");
 
                 entity.Property(e => e.Username).IsUnicode(false);
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.OrganizationId)
+                    .HasForeignKey(d => d.OrganizationID)
                     .HasConstraintName("FK_Users.OrganizationID");
             });
 

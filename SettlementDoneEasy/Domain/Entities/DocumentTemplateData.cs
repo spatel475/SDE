@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class DocumentTemplateDatum
+    public partial class DocumentTemplateData
     {
         public int? TemplateID { get; set; }
         public byte[] Template { get; set; }

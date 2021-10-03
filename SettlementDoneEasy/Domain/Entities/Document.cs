@@ -9,19 +9,19 @@ namespace SDE_Server.Domain.Entities
     {
         public Document()
         {
-            DocumentAudits = new HashSet<DocumentAudit>();
-            DocumentUsers = new HashSet<DocumentUser>();
+            DocumentAudit = new HashSet<DocumentAudit>();
+            DocumentUser = new HashSet<DocumentUser>();
         }
 
-        public int Id { get; set; }
-        public int? UserId { get; set; }
+        public int ID { get; set; }
+        public int? UserID { get; set; }
         public string Data { get; set; }
-        public int? TemplateId { get; set; }
+        public int? TemplateID { get; set; }
 
         public virtual DocumentTemplate Template { get; set; }
-        public virtual User User { get; set; }
-        public virtual DocumentDatum DocumentDatum { get; set; }
-        public virtual ICollection<DocumentAudit> DocumentAudits { get; set; }
-        public virtual ICollection<DocumentUser> DocumentUsers { get; set; }
+        public virtual Users User { get; set; }
+        public virtual DocumentData DocumentData { get; set; }
+        public virtual ICollection<DocumentAudit> DocumentAudit { get; set; }
+        public virtual ICollection<DocumentUser> DocumentUser { get; set; }
     }
 }
