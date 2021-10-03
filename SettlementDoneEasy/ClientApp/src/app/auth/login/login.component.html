@@ -6,8 +6,8 @@
 				<form [formGroup]="userLoginForm">
 					<mat-form-field class="full-width" appearance="outline">
 						<mat-label>Email</mat-label>
-						<input formControlName="email" matInput placeholder="john123@email.com" [required]="true"
-							[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+						<input formControlName="email" matInput type="email" placeholder="john123@email.com"
+							[required]="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
 					</mat-form-field>
 					<mat-form-field class="full-width" appearance="outline">
 						<mat-label>Password</mat-label>

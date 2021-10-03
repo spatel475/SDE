@@ -23,6 +23,10 @@ export class AccountService {
 	}
 
 	login(username, password) {
+		this.api.get('users').toPromise()
+			.then(x => console.log(x))
+			.catch(e => console.warn(e))
+
 		return this.api.post<UserModel>(`auth/login`, { username, password }).pipe(
 			map((user) => {
 				// store user details and jwt token in local storage to keep user logged in between page refreshes

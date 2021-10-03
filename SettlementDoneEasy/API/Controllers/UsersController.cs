@@ -11,9 +11,9 @@ namespace SDE_Server.API.Controllers
     public class UsersController : Controller
     {
         private readonly IHubContext<ServerHub> _hubContext;
-        private readonly sqldbsdedevContext _context;
+        private readonly SDEDBContext _context;
 
-        public UsersController(sqldbsdedevContext context, IHubContext<ServerHub> hubContext)
+        public UsersController(SDEDBContext context, IHubContext<ServerHub> hubContext)
         {
             _context = context;
             _hubContext = hubContext;

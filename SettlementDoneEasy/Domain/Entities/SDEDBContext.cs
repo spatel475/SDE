@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class sqldbsdedevContext : DbContext
+    public partial class SDEDBContext : DbContext
     {
-        public sqldbsdedevContext()
+        public SDEDBContext()
         {
         }
 
-        public sqldbsdedevContext(DbContextOptions<sqldbsdedevContext> options)
+        public SDEDBContext(DbContextOptions<SDEDBContext> options)
             : base(options)
         {
         }
@@ -25,14 +26,13 @@ namespace SDE_Server.Domain.Entities
         public virtual DbSet<DocumentUser> DocumentUser { get; set; }
         public virtual DbSet<FlowTemplate> FlowTemplate { get; set; }
         public virtual DbSet<Organization> Organization { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=sqldb-sde.hastings-network.com;Database=sqldb-sde-dev;User Id=svc-sde-dev;Password=W3HUOsZI9GJ4QsPIfgmT");
+                optionsBuilder.UseSqlServer(AppSettings.GetSettings().DBConnectionString);
             }
         }
 
@@ -142,7 +142,7 @@ namespace SDE_Server.Domain.Entities
                 entity.Property(e => e.Type).IsUnicode(false);
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.ID).ValueGeneratedNever();
 

@@ -5,13 +5,13 @@ import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 
 export const AppRoutes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  {
-    path: "",
-    component: HomeComponent,
-    pathMatch: "full",
-    canActivate: [AuthGuard],
-  },
-  { path: "**", redirectTo: "" },
+	{ path: "login", component: LoginComponent },
+	{ path: "register", component: RegisterComponent },
+	{
+		path: "",
+		component: HomeComponent,
+		pathMatch: "full",
+		canActivate: [AuthGuard],
+	},
+	{ path: "**", redirectTo: "" },
 ];

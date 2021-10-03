@@ -19,7 +19,7 @@ namespace SDE_Server.Domain.Entities
         public int? TemplateID { get; set; }
 
         public virtual DocumentTemplate Template { get; set; }
-        public virtual Users User { get; set; }
+        public virtual User User { get; set; }
         public virtual DocumentData DocumentData { get; set; }
         public virtual ICollection<DocumentAudit> DocumentAudit { get; set; }
         public virtual ICollection<DocumentUser> DocumentUser { get; set; }

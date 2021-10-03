@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -9,9 +9,9 @@ namespace SDE_Server.Domain.Entities
     {
         public User()
         {
-            DocumentTemplates = new HashSet<DocumentTemplate>();
-            DocumentUsers = new HashSet<DocumentUser>();
-            Documents = new HashSet<Document>();
+            Document = new HashSet<Document>();
+            DocumentTemplate = new HashSet<DocumentTemplate>();
+            DocumentUser = new HashSet<DocumentUser>();
         }
 
         public int ID { get; set; }
@@ -20,8 +20,8 @@ namespace SDE_Server.Domain.Entities
         public int? OrganizationID { get; set; }
 
         public virtual Organization Organization { get; set; }
-        public virtual ICollection<DocumentTemplate> DocumentTemplates { get; set; }
-        public virtual ICollection<DocumentUser> DocumentUsers { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Document> Document { get; set; }
+        public virtual ICollection<DocumentTemplate> DocumentTemplate { get; set; }
+        public virtual ICollection<DocumentUser> DocumentUser { get; set; }
     }
 }

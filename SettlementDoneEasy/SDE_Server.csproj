@@ -30,15 +30,18 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Infrastructure\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Infrastructure\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Domain\Rules\" />
     <Folder Include="Domain\Repositories\" />
-    <Folder Include="Infrastructure\Migrations\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

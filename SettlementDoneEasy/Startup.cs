@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SDE_Server.Domain.Entities;
+using SDE_Server.Domain.Entities.Auth;
+using SDE_Server.Domain.Repositories;
 using SDE_Server.Hubs;
+using SDE_Server.JWT;
 
 namespace SDE_Server
 {
@@ -47,10 +51,21 @@ namespace SDE_Server
             #endregion
 
             #region DB 
-            services.AddScoped<DbContext, sqldbsdedevContext>();
-            services.AddDbContext<sqldbsdedevContext>();
+            services.AddScoped<DbContext, SDEDBContext>();
+            services.AddDbContext<SDEDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
+            services.AddDbContext<AuthDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
+            services
+                .AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                })
+                .AddEntityFrameworkStores<SDEDBContext>()
+                .AddDefaultTokenProviders();
             #endregion
 
+            services.AddScoped<JwtHandler>();
+
+            services.AddTransient<UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
