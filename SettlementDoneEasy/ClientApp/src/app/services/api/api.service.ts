@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ApiService {
+  // HARDCODED
   private url = "https://localhost:5001";
   constructor(private http: HttpClient) {}
 

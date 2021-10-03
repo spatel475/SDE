@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
-import { AppConfiguration } from "read-appsettings-json";
+// import { AppConfiguration } from "read-appsettings-json";
 
 @Injectable({
   providedIn: "root",
 })
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
- 
- 
 
   constructor() {
     this.startConnection();
@@ -16,7 +14,8 @@ export class SignalRService {
   }
 
   startConnection() {
-    var serverHubUrl = "https://" + AppConfiguration.Setting().SDE_ServerHost + ":" + AppConfiguration.Setting().SDE_ServerPort;
+    //   HARDCODED
+    var serverHubUrl = "https://" + "localhost" + ":" + "4001";
     console.log();
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(serverHubUrl + "/hub")
