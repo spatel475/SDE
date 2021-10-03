@@ -10,7 +10,7 @@ namespace SDE_Server.Domain.Entities
         public Organization()
         {
             DocumentTemplate = new HashSet<DocumentTemplate>();
-            Users = new HashSet<User>();
+            Users = new HashSet<Users>();
         }
 
         public int ID { get; set; }
@@ -18,6 +18,6 @@ namespace SDE_Server.Domain.Entities
         public string Type { get; set; }
 
         public virtual ICollection<DocumentTemplate> DocumentTemplate { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

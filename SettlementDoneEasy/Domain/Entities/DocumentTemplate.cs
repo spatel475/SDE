@@ -18,7 +18,7 @@ namespace SDE_Server.Domain.Entities
         public int? FlowTemplate { get; set; }
         public byte[] Data { get; set; }
 
-        public virtual User CreatorNavigation { get; set; }
+        public virtual Users CreatorNavigation { get; set; }
         public virtual FlowTemplate FlowTemplateNavigation { get; set; }
         public virtual Organization Organization { get; set; }
         public virtual ICollection<Document> Document { get; set; }

@@ -12,10 +12,10 @@ namespace SDE_Server.Domain.Repositories
 {
     public class UserRepository
     {
-        private SDEDBContext _dbContext;
+        private sqldbsdedevContext _dbContext;
         private UserManager<IdentityUser> _userManager;
 
-        public UserRepository(SDEDBContext dbContext, UserManager<IdentityUser> userManager)
+        public UserRepository(sqldbsdedevContext dbContext, UserManager<IdentityUser> userManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
@@ -23,7 +23,7 @@ namespace SDE_Server.Domain.Repositories
 
         public async Task<UserModel> GetUserByEmail(string email)
         {
-            User user = await _dbContext.User.FirstOrDefaultAsync(u => u.Email == email);
+            Users user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
 
             return new UserModel
             {
@@ -32,26 +32,25 @@ namespace SDE_Server.Domain.Repositories
                 Username = user.Username,
                 Organization = new OrganizationModel
                 {
-                    ID = user.OrganizationID.Value
+                    //ID = user.OrganizationID.Value
                 }
             };
         }
 
         public async Task<UserModel> Create(UserModel user)
         {
-            IdentityUser identityUser = await CreateIdentityUserAsync(user);
-
-            User newUser = new()
+            IdentityUser iUser = await CreateIdentityUserAsync(user);
+            Users newUser = new()
             {
                 Username = user.Username,
                 Email = user.Email,
-                OrganizationID = user.Organization.ID
+                OrganizationID = user.Organization?.ID
             };
 
-            _dbContext.User.AddAsync(newUser);
+            _dbContext.Users.AddAsync(newUser);
             _dbContext.SaveChangesAsync();
 
-            return user;
+            return await GetUserByEmail(user.Email);
         }
 
         private async Task<IdentityUser> CreateIdentityUserAsync(UserModel user)

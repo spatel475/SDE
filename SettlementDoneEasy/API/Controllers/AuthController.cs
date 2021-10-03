@@ -32,7 +32,9 @@ namespace SDE_Server.API.Controllers
         public async Task<LoginReponseModel> Login([FromBody] LoginModel loginModel)
         {
             IdentityUser user = await _userManager.FindByEmailAsync(loginModel.Email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, loginModel.Password))
+            bool isPasswordValid = await _userManager.CheckPasswordAsync(user, loginModel.Password);
+
+            if (user == null || !isPasswordValid)
             {
                 return new LoginReponseModel
                 {

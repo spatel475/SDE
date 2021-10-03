@@ -12,6 +12,6 @@ namespace SDE_Server.Domain.Entities
         public int? DocID { get; set; }
 
         public virtual Document Doc { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

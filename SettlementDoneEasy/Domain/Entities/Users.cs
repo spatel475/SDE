@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class User
+    public partial class Users
     {
-        public User()
+        public Users()
         {
             Document = new HashSet<Document>();
             DocumentTemplate = new HashSet<DocumentTemplate>();

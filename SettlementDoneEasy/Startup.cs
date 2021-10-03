@@ -35,14 +35,13 @@ namespace SDE_Server
 
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins(AppSettings.GetSettings().CorsAllowedAccess)
-                                           .AllowAnyMethod()
-                                           .AllowAnyHeader()
-                                           .AllowCredentials();
-                                  });
+                options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins(AppSettings.GetSettings().CorsAllowedAccess)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
             });
 
             #region Controller/SignalR
@@ -51,15 +50,15 @@ namespace SDE_Server
             #endregion
 
             #region DB 
-            services.AddScoped<DbContext, SDEDBContext>();
-            services.AddDbContext<SDEDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
+            services.AddScoped<DbContext, sqldbsdedevContext>();
+            services.AddDbContext<sqldbsdedevContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services.AddDbContext<AuthDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services
                 .AddIdentity<IdentityUser, IdentityRole>(options =>
                 {
                     options.User.RequireUniqueEmail = true;
                 })
-                .AddEntityFrameworkStores<SDEDBContext>()
+                .AddEntityFrameworkStores<AuthDBContext>()
                 .AddDefaultTokenProviders();
             #endregion
 
