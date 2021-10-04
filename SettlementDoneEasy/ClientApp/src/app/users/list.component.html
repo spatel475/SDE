@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <th style="width: 30%">Company Name</th>
-            <th style="width: 30%">CompanyID</th>
+            <th style="width: 30%">Email</th>
             <th style="width: 30%">Username</th>
             <th style="width: 10%"></th>
         </tr>
@@ -12,7 +12,7 @@
     <tbody>
         <tr *ngFor="let user of users">
             <td>{{user.Company}}</td>
-            <td>{{user.CompanyID}}</td>
+            <td>{{user.email}}</td>
             <td>{{user.username}}</td>
             <td style="white-space: nowrap">
                 <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>

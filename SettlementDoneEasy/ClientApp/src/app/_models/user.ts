@@ -3,6 +3,6 @@ export class User {
     username: string;
     password: string;
     Company: string;
-    CompanyID: string;
+    email: string;
     token: string;
 }
