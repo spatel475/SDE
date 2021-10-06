@@ -11,7 +11,7 @@ export class ApiService {
 	constructor(private http: HttpClient) { }
 
 	private getURL(subPath: string): string {
-		return `${this.url}/api/${subPath}`;
+		return `/api/${subPath}`;
 	}
 
 	post<T>(url: string, body: any, options?: any): Observable<any> {
