@@ -6,20 +6,24 @@ import { SignalRService } from "../services/signal-r/signal-r.service";
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
-  user: UserModel;
+	user: UserModel;
 
-  constructor(
-    private signalRService: SignalRService,
-    private apiService: ApiService,
-    private accountService: AccountService
-  ) {
-    this.user = this.accountService.userValue;
-  }
+	constructor(
+		private signalRService: SignalRService,
+		private apiService: ApiService,
+		private accountService: AccountService
+	) {
+		this.accountService.user.subscribe((x) => (this.user = x));
+	}
 
-  getMessageFromController() {
-    this.apiService.get("Users").subscribe({
-      next: (x) => console.log(x),
-      error: (err) => console.warn(err),
-    });
-  }
+	getMessageFromController() {
+		this.apiService.get("Users").subscribe({
+			next: (x) => console.log(x),
+			error: (err) => console.warn(err),
+		});
+	}
+
+	logout() {
+		this.accountService.logout();
+	}
 }

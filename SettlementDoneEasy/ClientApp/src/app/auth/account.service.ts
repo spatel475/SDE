@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { ApiService } from "../services/api/api.service";
 import { UserModel } from "../models/UserModel";
+import { LoginReponseModel } from "../models/login/LoginResponseModel";
+import { loginModel } from "../models/login/LoginModel";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
@@ -12,9 +13,8 @@ export class AccountService {
 	public user: Observable<UserModel>;
 
 	constructor(private router: Router, private api: ApiService) {
-		this.userSubject = new BehaviorSubject<UserModel>(
-			JSON.parse(localStorage.getItem("user"))
-		);
+		let login: LoginReponseModel = JSON.parse(localStorage.getItem("token"));
+		this.userSubject = new BehaviorSubject<UserModel>(login?.user);
 		this.user = this.userSubject.asObservable();
 	}
 
@@ -22,26 +22,24 @@ export class AccountService {
 		return this.userSubject.value;
 	}
 
-	login(username, password) {
-		this.api.get('users').toPromise()
-			.then(x => console.log(x))
-			.catch(e => console.warn(e))
-
-		return this.api.post<UserModel>(`auth/login`, { username, password }).pipe(
-			map((user) => {
+	login(login: loginModel) {
+		let observer = this.api.post<LoginReponseModel>(`auth/login`, login);
+		observer.subscribe(((response: LoginReponseModel) => {
+			if (response.isAuthSuccessful) {
 				// store user details and jwt token in local storage to keep user logged in between page refreshes
-				localStorage.setItem("user", JSON.stringify(user));
-				this.userSubject.next(user);
-				return user;
-			})
-		);
+				localStorage.setItem("token", JSON.stringify(response));
+			}
+
+			this.userSubject.next(response.user);
+		}));
+		return observer;
 	}
 
 	logout() {
 		// remove user from local storage and set current user to null
-		localStorage.removeItem("user");
+		localStorage.removeItem("token");
 		this.userSubject.next(null);
-		this.router.navigate(["/account/login"]);
+		this.router.navigate(["/login"]);
 	}
 
 	register(user: UserModel) {

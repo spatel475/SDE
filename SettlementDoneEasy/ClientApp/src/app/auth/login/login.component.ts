@@ -2,8 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { first } from "rxjs/operators";
 import { AccountService } from "src/app/auth/account.service";
+import { loginModel } from "src/app/models/login/LoginModel";
+import { LoginReponseModel } from "src/app/models/login/LoginResponseModel";
+import { ApiService } from "src/app/services/api/api.service";
 
 @Component({
 	selector: "app-login",
@@ -20,12 +22,14 @@ export class LoginComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private accountService: AccountService,
-		private toastr: ToastrService
-	) { }
+		private toastr: ToastrService,
+	) {
+		this.accountService.user.subscribe((x) => this.router.navigateByUrl(''));
+	}
 
 	ngOnInit() {
 		this.userLoginForm = this.formBuilder.group({
-			email: ["", [Validators.required, Validators.email]],
+			email: ["", [Validators.email]],
 			password: ["", [Validators.required]],
 		});
 	}
@@ -49,23 +53,39 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
-		this.submitted = true;
-
 		// reset alerts on submit
 		this.toastr.clear();
+		this.submitted = true;
+		this.loading = true;
 
+		let loginModel: loginModel = {
+			email: this.f.email.value,
+			password: this.f.password.value
+		}
 		this.accountService
-			.login(this.f.email.value, this.f.password.value)
-			.pipe(first())
+			.login(loginModel)
 			.subscribe(
-				(data) => {
-					this.router.navigate([this.returnUrl]);
+				(data: LoginReponseModel) => {
+					if (data.isAuthSuccessful) {
+						this.onSuccesfulLogin(data);
+					} else {
+						this.onUnsuccessfulLogin();
+					}
+					this.loading = false;
 				},
 				(error) => {
 					this.toastr.error(error);
 					this.loading = false;
 				}
 			);
-		this.loading = true;
 	}
+
+	private onSuccesfulLogin(response: LoginReponseModel) {
+		this.router.navigateByUrl('');
+	}
+
+	private onUnsuccessfulLogin() {
+		this.toastr.error('Invalid Login');
+	}
+
 }
