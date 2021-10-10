@@ -16,7 +16,7 @@ export class FormService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.formSubject = new BehaviorSubject<Form>(JSON.parse(localStorage.getItem('forms')));
+        this.formSubject = new BehaviorSubject<Form>(JSON.parse(localStorage.getItem('form')));
         this.form = this.formSubject.asObservable();
     }
 
@@ -24,10 +24,13 @@ export class FormService {
         return this.formSubject.value;
     }
 
-  register(params) {
-    const form = { ...this.formValue, ...params };
-    localStorage.setItem('forms', JSON.stringify(form));
-    this.formSubject.next(form);
+  register(forms: Form) { // Results in zone.js:3324 POST http://localhost:4200/form/register 404 (Not Found)
+    //(`${environment.apiUrl}/users/register`, forms) Creates a strings an saves it as a user, any change results in 'Not Found'
+    return this.http.post(`${environment.apiUrl}/forms/register`, forms);
+    //register(params) {
+    //const form = { ...this.formValue, ...params };
+    //localStorage.setItem('forms', JSON.stringify(form));
+    //this.formSubject.next(form);
 
   }
 
@@ -39,24 +42,24 @@ export class FormService {
     }
 
 
-  getAll() {
-      localStorage.getItem('forms');
-      return this.http.get<Form[]>(`${environment.apiUrl}/forms`);
+  getAll() { // zone.js:3324 GET http://localhost:4200/form 404 (Not Found)
+      localStorage.getItem('form');
+      return this.http.get<Form[]>(`${environment.apiUrl}/form`);
 
     }
 
   getById(Policy_holder: string) {
-    return this.http.get<Form>(`${environment.apiUrl}/forms/${Policy_holder}`);
+    return this.http.get<Form>(`${environment.apiUrl}/form/${Policy_holder}`);
     }
 
   update(Policy_holder, params) {
-      return this.http.put(`${environment.apiUrl}/forms/${Policy_holder}`, params)
+      return this.http.put(`${environment.apiUrl}/form/${Policy_holder}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
               if (Policy_holder == this.formValue.Policy_holder) {
                     // update local storage
                     const form = { ...this.formValue, ...params };
-                    localStorage.setItem('forms', JSON.stringify(form));
+                    localStorage.setItem('form', JSON.stringify(form));
 
                     // publish updated user to subscribers
                     this.formSubject.next(form);
@@ -66,7 +69,7 @@ export class FormService {
     }
 
   delete(Policy_holder: string) {
-        return this.http.delete(`${environment.apiUrl}/forms/${Policy_holder}`)
+        return this.http.delete(`${environment.apiUrl}/form/${Policy_holder}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
               if (Policy_holder == this.formValue.Policy_holder) {

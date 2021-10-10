@@ -68,9 +68,20 @@ export class AddEditComponent implements OnInit {
     }
 
     private createForm() {
-      this.formService.register(this.form.value);
-        this.alertService.success('Form added successfully', { keepAfterRouteChange: true });
-        this.router.navigate(['.', { relativeTo: this.route }]);
+      //this.formService.register(this.form.value);
+      //this.alertService.success('Form added successfully', { keepAfterRouteChange: true });
+     // this.router.navigate(['.', { relativeTo: this.route }]);
+      this.formService.register(this.form.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+            this.router.navigate(['.', { relativeTo: this.route }]);
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          });
     }
 
     private updateForm() {
