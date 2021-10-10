@@ -1,0 +1,43 @@
+<h1 *ngIf="isAddMode">Add Form</h1>
+<h1 *ngIf="!isAddMode">Edit Form</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+          <label for="Claim_number">Claim Number</label>
+            <input type="text" formControlName="Claim_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Claim_number.errors }" />
+            <div *ngIf="submitted && f.Claim_number.errors" class="invalid-feedback">
+              <div *ngIf="f.Claim_number.errors.required">Claim Number is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+          <label for="Policy_number">Policy Number</label>
+            <input type="text" formControlName="Policy_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Policy_number.errors }" />
+            <div *ngIf="submitted && f.Policy_number.errors" class="invalid-feedback">
+              <div *ngIf="f.Policy_number.errors.required">Policy Number is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="claimiant_name"> Claimiant Name</label>
+        <input type="text" formControlName="claimiant_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f. claimiant_name.errors }" />
+        <div *ngIf="submitted && f.claimiant_name.errors" class="invalid-feedback">
+          <div *ngIf="f.claimiant_name.errors.required"> Claimiant Name is required</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="Policy_holder">Policy Holder</label>
+        <input type="text" formControlName="Policy_holder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Policy_holder.errors }" />
+        <div *ngIf="submitted && f.Policy_holder.errors" class="invalid-feedback">
+          <div *ngIf="f.Policy_holder.errors.required">Policy holder is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/forms" class="btn btn-link">Cancel</a>
+    </div>
+</form>

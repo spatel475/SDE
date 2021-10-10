@@ -1,18 +1,33 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api/api.service';
-import { SignalRService } from '../services/signal-r/signal-r.service';
 
-@Component({
-	selector: 'app-home',
-	templateUrl: './home.component.html',
-})
+import { ApiService } from '../_services/api/api.service';
+import { SignalRService } from '../_services/signal-r/signal-r.service';
+
+import { User } from '@app/_models';
+import { AccountService } from '@app/_services';
+
+@Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
-	constructor(private apiService: ApiService, private signalRService: SignalRService) { }
+  user: User;
+  SignalRService: SignalRService;
+  apiService: ApiService;
 
-	getMessageFromController() {
-		this.apiService.get('Users').subscribe({
-			next: (x) => console.log(x),
-			error: (err) => console.warn(err)
-		});
-	}
-}
+
+  constructor(public accountService: AccountService ) {
+      this.user = this.accountService.userValue;
+    
+
+  }
+  // changing the paramters for the constructor to private apiService: ApiService, private signalRService: SignalRService
+  // will make the code ignore home.component.html.
+
+ 
+    getMessageFromController() {
+      this.apiService.get('Users').subscribe({
+        next: (x) => console.log(x),
+        error: (err) => console.warn(err)
+      });
+    }
+  
+
+  }

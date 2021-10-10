@@ -1,0 +1,33 @@
+<h1>Forms</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Form</a>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 20%">Claim Number</th>
+        <th style="width: 20%">Policy Number</th>
+        <th style="width: 20%">Claimiant Name</th>
+        <th style="width: 20%">Claimiant Name</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let form of forms">
+          <td>{{forms.Claim_number}}</td>
+          <td>{{forms.Policy_number}}</td>
+          <td>{{forms.Policy_holder}}</td>
+          <td>{{forms.claimiant_name}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{forms.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteForm(forms.id)" class="btn btn-sm btn-danger btn-delete-forms" [disabled]="forms.isDeleting">
+                    <span *ngIf="forms.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!forms.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!forms">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
