@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../services/api/api.service';
-import { SignalRService } from '../services/signal-r/signal-r.service';
+import { Component } from "@angular/core";
+import { AccountService } from "../auth/account.service";
+import { UserModel } from "../models/UserModel";
+import { ApiService } from "../services/api/api.service";
+import { SignalRService } from "../services/signal-r/signal-r.service";
 
-@Component({
-	selector: 'app-home',
-	templateUrl: './home.component.html',
-})
+@Component({ templateUrl: "home.component.html" })
 export class HomeComponent {
-	constructor(private apiService: ApiService, private signalRService: SignalRService) { }
+	user: UserModel;
+
+	constructor(
+		private signalRService: SignalRService,
+		private apiService: ApiService,
+		private accountService: AccountService
+	) {
+		this.accountService.user.subscribe((x) => (this.user = x));
+	}
 
 	getMessageFromController() {
-		this.apiService.get('Users').subscribe({
+		this.apiService.get("Users").subscribe({
 			next: (x) => console.log(x),
-			error: (err) => console.warn(err)
+			error: (err) => console.warn(err),
 		});
+	}
+
+	logout() {
+		this.accountService.logout();
 	}
 }

@@ -1,3 +1,47 @@
 {
-  "cSpell.words": ["Toastr"]
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+  "workbench.startupEditor": "newUntitledFile",
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "",
+  "explorer.autoReveal": false,
+  "workbench.colorCustomizations": {
+    "editor.background": "#000000"
+  },
+  "workbench.tree.indent": 16,
+  "html.format.enable": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.detectIndentation": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.enablePreview": false,
+  "angular.enable-experimental-ivy-prompt": false,
+  "typescript.implementationsCodeLens.enabled": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "Wscats.eno"
+  },
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "search.exclude": {
+    "**/dist": true
+  },
+  "html.format.contentUnformatted": "",
+  "html.format.wrapLineLength": 125,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "editor.insertSpaces": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  }
 }
