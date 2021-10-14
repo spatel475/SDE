@@ -6,13 +6,8 @@ import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 
 export const AppRoutes: Routes = [
-	{
-		path: "",
-		component: HomeComponent,
-		pathMatch: "full",
-		canActivate: [AuthGuard],
-	},
 	{ path: "login", component: LoginComponent },
-	{ path: "register", component: RegisterComponent },
+	// { path: 'forgot-password', component: ForgotPasswordComponent },
+	{ path: "", redirectTo: "/login", pathMatch: "full" },
 	{ path: "**", redirectTo: "" },
 ];
