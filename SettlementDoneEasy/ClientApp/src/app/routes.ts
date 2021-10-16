@@ -12,6 +12,6 @@ export const AppRoutes: Routes = [
 	{ path: "**", redirectTo: "" },
 	{ path: "login", component: LoginComponent },
 	// { path: 'forgot-password', component: ForgotPasswordComponent },
-	{ path: "dashboard", component: DashboardViewComponent },
+	{ path: "dashboard", component: DashboardViewComponent, canActivate: [AuthGuard] },
 
 ];
