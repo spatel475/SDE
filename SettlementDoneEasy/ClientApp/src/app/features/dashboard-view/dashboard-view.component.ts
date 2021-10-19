@@ -7,12 +7,18 @@ import { AccountService } from 'src/app/auth/account.service';
 })
 export class DashboardViewComponent implements OnInit {
 
+	public pageState = "Active Documents";
+
 	constructor(public accountService: AccountService) { }
 
 	ngOnInit(): void {
 	}
 
 	//Ashmal
+
+	changePageState(title: string) {
+		this.pageState = title;
+	}
 
 	logout() {
 		console.log("Logout Pressed");

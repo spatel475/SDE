@@ -1,14 +1,39 @@
 <!--Ledarrious-->
 <div class="page-wrapper">
 	<div class="side-bar-nav">
-		<div class="side-bar-action">
-
+		<div class="side-bar-widget">
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">home</mat-icon>
+				<span class="action-content" (click)="changePageState('Active')">Active Documents</span>
+			</div>
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">description</mat-icon>
+				<span class="action-content" (click)="changePageState('Draft')">Drafts Documents</span>
+			</div>
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">home</mat-icon>
+				<span class="action-content" (click)="changePageState('Archive')">Archived Documents</span>
+			</div>
 		</div>
+
+		<div class="side-bar-widget">
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">home</mat-icon>
+				<span class="action-content">Create Document</span>
+			</div>
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">home</mat-icon>
+				<span class="action-content">Other Action</span>
+			</div>
+			<div class="side-bar-widget-action">
+				<mat-icon class="action-icon">home</mat-icon>
+				<span class="action-content">Other Action</span>
+			</div>
+		</div>
+
 	</div>
 	<div class="content-wrapper">
-		<div class="top-nav">
-			<div (click)="logout()">Logout</div>
-		</div>
+		<document-grid [title]="this.pageState"></document-grid>
 		<div class="content"></div>
 	</div>
 </div>
