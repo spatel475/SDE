@@ -1,0 +1,33 @@
+.page-wrapper {
+	display: flex;
+	flex-direction: row;
+	border-width: 1px;
+	border-color: red;
+	border-style: solid;
+	height: 100%;
+}
+
+.side-bar-nav {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-basis: 10%;
+	min-width: 25px;
+	border-width: 1px;
+	border-color: red;
+	border-style: solid;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-basis: 80%;
+	border-width: 1px;
+	border-color: red;
+	border-style: solid;
+}
+
+.top-nav {
+	
+}
