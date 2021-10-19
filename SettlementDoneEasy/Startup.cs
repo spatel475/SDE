@@ -50,8 +50,8 @@ namespace SDE_Server
             #endregion
 
             #region DB 
-            services.AddScoped<DbContext, sqldbsdedevContext>();
-            services.AddDbContext<sqldbsdedevContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
+            services.AddScoped<DbContext, SDEDBContext>();
+            services.AddDbContext<SDEDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services.AddDbContext<AuthDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services
                 .AddIdentity<IdentityUser, IdentityRole>(options =>
