@@ -42,6 +42,7 @@
   <ItemGroup>
     <Folder Include="Domain\Rules\" />
     <Folder Include="Domain\Repositories\" />
+    <Folder Include="Migrations\SDEDB\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
