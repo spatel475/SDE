@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class sqldbsdedevContext : DbContext
+    public partial class SDEDBContext : DbContext
     {
-        public sqldbsdedevContext()
+        public SDEDBContext()
         {
         }
 
-        public sqldbsdedevContext(DbContextOptions<sqldbsdedevContext> options)
+        public SDEDBContext(DbContextOptions<SDEDBContext> options)
             : base(options)
         {
         }
@@ -159,11 +159,14 @@ namespace SDE_Server.Domain.Entities
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FlowState).IsUnicode(false);
+                entity.Property(e => e.FlowState)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentAudit)
                     .HasForeignKey(d => d.DocID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 

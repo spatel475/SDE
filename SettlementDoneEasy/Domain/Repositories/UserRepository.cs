@@ -12,10 +12,10 @@ namespace SDE_Server.Domain.Repositories
 {
     public class UserRepository
     {
-        private sqldbsdedevContext _dbContext;
+        private SDEDBContext _dbContext;
         private UserManager<IdentityUser> _userManager;
 
-        public UserRepository(sqldbsdedevContext dbContext, UserManager<IdentityUser> userManager)
+        public UserRepository(SDEDBContext dbContext, UserManager<IdentityUser> userManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;

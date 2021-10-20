@@ -12,9 +12,10 @@ namespace SDE_Server.API.Controllers
     public class UsersController : Controller
     {
         private readonly IHubContext<ServerHub> _hubContext;
+        private readonly SDEDBContext _context;
         private readonly UserRepository _userRepository;
 
-        public UsersController(IHubContext<ServerHub> hubContext, UserRepository userRepository)
+        public UsersController(SDEDBContext context, IHubContext<ServerHub> hubContext, UserRepository userRepository)
         {
             _hubContext = hubContext;
             _userRepository = userRepository;
