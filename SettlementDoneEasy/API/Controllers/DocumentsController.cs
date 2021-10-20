@@ -24,7 +24,11 @@ namespace SDE_Server.API.Controllers
         [HttpPost("Create")]
         public async Task Create([FromBody] DocumentModel document)
         {
-            await _documentRepository.Create(document);
+            
+
+
+
+            //await _documentRepository.Create(document);
 
             // idk how/if we want to provide live updates since nothing is listening for it in front-end
             _hubContext.Clients.All.SendAsync("Document");
