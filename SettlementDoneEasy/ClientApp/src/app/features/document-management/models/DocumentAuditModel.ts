@@ -4,4 +4,5 @@ class DocumentAuditModel {
 	public Description: string;
 	public FlowState: string;
 	public State: number;
+	public CreationDate: Date;
 }
