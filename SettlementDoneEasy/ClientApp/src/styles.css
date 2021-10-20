@@ -1,22 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-code {
-  color: #e01a76;
-}
-
-button {
-  border-radius: 8px !important;
-}
-
 html,
 body {
   height: 100%;
+  background-color: rgb(218, 218, 218);
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -30,4 +17,12 @@ body {
 
 .full-width {
   width: 100%;
+}
+
+button {
+  border-radius: 8px !important;
+}
+
+mat-card {
+  border-radius: 8px !important;
 }

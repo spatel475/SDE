@@ -6,8 +6,6 @@ import { Observable } from "rxjs";
 	providedIn: "root",
 })
 export class ApiService {
-	// HARDCODED
-	private url = "https://localhost:4001";
 	constructor(private http: HttpClient) { }
 
 	private getURL(subPath: string): string {
@@ -31,6 +29,7 @@ export class ApiService {
 	get<T>(url: string, ...args: any[]): Observable<T> {
 		let reqURL = this.getURL(url);
 		args.forEach((arg) => (reqURL += "/" + arg));
+
 		return this.http.get<T>(reqURL);
 	}
 }

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SDE_Server.Domain.Entities
 {
-    public partial class sqldbsdedevContext : DbContext
+    public partial class SDEDBContext : DbContext
     {
-        public sqldbsdedevContext()
+        public SDEDBContext()
         {
         }
 
-        public sqldbsdedevContext(DbContextOptions<sqldbsdedevContext> options)
+        public SDEDBContext(DbContextOptions<SDEDBContext> options)
             : base(options)
         {
         }
@@ -136,8 +136,6 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Document>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.Property(e => e.Data).IsUnicode(false);
 
                 entity.HasOne(d => d.Template)
@@ -153,23 +151,24 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<DocumentAudit>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FlowState).IsUnicode(false);
+                entity.Property(e => e.FlowState)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentAudit)
                     .HasForeignKey(d => d.DocID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 
             modelBuilder.Entity<DocumentData>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
+                entity.Property(e => e.ID).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.IDNavigation)
                     .WithOne(p => p.DocumentData)
@@ -180,8 +179,6 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<DocumentTemplate>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.HasOne(d => d.CreatorNavigation)
                     .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.Creator)
@@ -201,12 +198,12 @@ namespace SDE_Server.Domain.Entities
             modelBuilder.Entity<DocumentTemplateData>(entity =>
             {
                 entity.HasNoKey();
+
+                entity.Property(e => e.TemplateID).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<DocumentUser>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.DocID)
@@ -220,8 +217,6 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<FlowTemplate>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.Property(e => e.Machine)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -229,8 +224,6 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Organization>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsUnicode(false);
 
                 entity.Property(e => e.Type).IsUnicode(false);
@@ -238,8 +231,6 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.Property(e => e.ID).ValueGeneratedNever();
-
                 entity.Property(e => e.Email).IsUnicode(false);
 
                 entity.Property(e => e.Username).IsUnicode(false);

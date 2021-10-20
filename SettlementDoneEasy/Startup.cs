@@ -50,8 +50,8 @@ namespace SDE_Server
             #endregion
 
             #region DB 
-            services.AddScoped<DbContext, sqldbsdedevContext>();
-            services.AddDbContext<sqldbsdedevContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
+            services.AddScoped<DbContext, SDEDBContext>();
+            services.AddDbContext<SDEDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services.AddDbContext<AuthDBContext>(option => option.UseSqlServer(AppSettings.GetSettings().DBConnectionString));
             services
                 .AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -65,6 +65,7 @@ namespace SDE_Server
             services.AddScoped<JwtHandler>();
 
             services.AddTransient<UserRepository>();
+            services.AddTransient<OrganizationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

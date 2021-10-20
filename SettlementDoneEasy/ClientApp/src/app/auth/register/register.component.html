@@ -1,49 +1,56 @@
-<div class="card">
-	<h4 class="card-header">Register</h4>
-	<div class="card-body">
-		<form [formGroup]="form" (ngSubmit)="onSubmit()">
-			<div class="form-group">
-				<label for="Company">Company Name</label>
-				<input type="text" formControlName="Company" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.Company.errors }" />
-				<div *ngIf="submitted && f.Company.errors" class="invalid-feedback">
-					<div *ngIf="f.Company.errors.required">Company Name is required</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="CompanyID">Company ID</label>
-				<input type="text" formControlName="CompanyID" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.CompanyID.errors }" />
-				<div *ngIf="submitted && f.CompanyID.errors" class="invalid-feedback">
-					<div *ngIf="f.CompanyID.errors.required">Company ID is required</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" formControlName="username" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-				<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-					<div *ngIf="f.username.errors.required">Username is required</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" formControlName="password" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-				<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-					<div *ngIf="f.password.errors.required">Password is required</div>
-					<div *ngIf="f.password.errors.minlength">
-						Password must be at least 6 characters
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<button [disabled]="loading" class="btn btn-primary">
+<div class="container">
+	<div class="form-container">
+		<mat-card class="form">
+			<h1 class="mat-headline">Register</h1>
+			<mat-card-content>
+				<form [formGroup]="form">
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Email</mat-label>
+						<input formControlName="email" matInput type="email" placeholder="john123@email.com"
+							[required]="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+					</mat-form-field>
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Username</mat-label>
+						<input formControlName="username" matInput type="text" placeholder="john123" [required]="true"
+							[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+					</mat-form-field>
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Organization</mat-label>
+						<mat-select formControlName='organization' name="Organization">
+							<mat-option *ngFor="let org of organizations" [value]="org.id">
+								{{org.name}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Password</mat-label>
+						<input id="password" type="password" formControlName="password" (input)="onPasswordInput()" matInput
+							[required]="true" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+						<mat-icon matSuffix style="cursor: pointer;" (click)="togglePasswordVisibility('password')">
+							visibility</mat-icon>
+					</mat-form-field>
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Confirm Password</mat-label>
+						<input id="password2" type="password" formControlName="password2" (input)="onPasswordInput()"
+							matInput [required]="true" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+						<mat-icon matSuffix style="cursor: pointer;" (click)="togglePasswordVisibility('password2')">
+							visibility</mat-icon>
+						<mat-error *ngIf="password2.hasError('required')">
+							Please confirm your password
+						</mat-error>
+						<mat-error *ngIf="password2.invalid && !password2.hasError('required')">
+							Passwords don't match
+						</mat-error>
+					</mat-form-field>
+				</form>
+			</mat-card-content>
+			<div class="footer">
+				<button mat-stroked-button (click)="login()">Login</button>
+				<button mat-flat-button color='primary' [disabled]="!isFormValid() || loading" (click)="register()">
 					<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
 					Register
 				</button>
-				<a routerLink="login" class="btn btn-link">Cancel</a>
 			</div>
-		</form>
+		</mat-card>
 	</div>
 </div>
