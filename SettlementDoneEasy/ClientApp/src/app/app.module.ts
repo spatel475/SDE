@@ -13,28 +13,30 @@ import { JwtInterceptor } from "./_helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { RegisterComponent } from "./auth/register/register.component";
 import { UIModule } from "./ui-module";
+import { DocumentManagementModule } from "./features/document-management/document-management.module";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(AppRoutes),
-    UIModule,
-  ],
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
+	imports: [
+		BrowserModule,
+		ReactiveFormsModule,
+		HttpClientModule,
+		BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
+		HttpClientModule,
+		FormsModule,
+		RouterModule.forRoot(AppRoutes),
+		UIModule,
+		DocumentManagementModule
+	],
+	declarations: [
+		AppComponent,
+		HomeComponent,
+		LoginComponent,
+		RegisterComponent,
+	],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+	],
+	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
