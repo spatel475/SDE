@@ -30,7 +30,6 @@ namespace SDE_Server.Domain.Entities
         public virtual DbSet<DocumentTemplate> DocumentTemplate { get; set; }
         public virtual DbSet<DocumentTemplateData> DocumentTemplateData { get; set; }
         public virtual DbSet<DocumentUser> DocumentUser { get; set; }
-        public virtual DbSet<FlowTemplate> FlowTemplate { get; set; }
         public virtual DbSet<Organization> Organization { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
@@ -179,15 +178,14 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<DocumentTemplate>(entity =>
             {
+                entity.Property(e => e.FlowName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.CreatorNavigation)
                     .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.Creator)
                     .HasConstraintName("FK_DocumentTemplate_Users");
-
-                entity.HasOne(d => d.FlowTemplateNavigation)
-                    .WithMany(p => p.DocumentTemplate)
-                    .HasForeignKey(d => d.FlowTemplate)
-                    .HasConstraintName("FK_DocumentTemplate_FlowTemplate");
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.DocumentTemplate)
@@ -213,13 +211,6 @@ namespace SDE_Server.Domain.Entities
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_DocumentUser.UserID");
-            });
-
-            modelBuilder.Entity<FlowTemplate>(entity =>
-            {
-                entity.Property(e => e.Machine)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Organization>(entity =>
