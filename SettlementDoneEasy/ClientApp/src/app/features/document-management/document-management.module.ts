@@ -5,11 +5,10 @@ import { DocumentCreateViewComponent } from './components/document-create-view/d
 import { MatInputModule } from '@angular/material/input';
 
 
-
 @NgModule({
 	declarations: [
 		DocumentGridComponent,
-		DocumentCreateViewComponent
+		DocumentCreateViewComponent,
 	],
 	imports: [
 		CommonModule,

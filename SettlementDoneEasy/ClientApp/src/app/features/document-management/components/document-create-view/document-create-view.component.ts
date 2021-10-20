@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DocumentManagementModule } from '../../document-management.module';
+import { DocumentModel } from '../../models/DocumentModel';
 
 @Component({
-  selector: 'app-document-create-view',
-  templateUrl: './document-create-view.component.html',
-  styleUrls: ['./document-create-view.component.css']
+	selector: 'app-document-create-view',
+	templateUrl: './document-create-view.component.html',
+	styleUrls: ['./document-create-view.component.css']
 })
 export class DocumentCreateViewComponent implements OnInit {
 
-  constructor() { }
+	@Output() submitted: EventEmitter<DocumentModel>;
 
-  ngOnInit(): void {
-  }
+	constructor() { }
+
+	ngOnInit(): void {
+	}
 
 }

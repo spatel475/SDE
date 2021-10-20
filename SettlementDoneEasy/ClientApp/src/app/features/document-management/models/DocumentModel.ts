@@ -1,5 +1,8 @@
+import { DocumentAuditModel } from "./DocumentAuditModel";
+import { DocumentDataModel } from "./DocumentDataModel";
+import { DocumentTemplateModel } from "./DocumentTemplateModel";
 
-class DocumentModel {
+export class DocumentModel {
 	public ID: number;
 	public UserId: number;
 	public Data: string;
@@ -12,3 +15,5 @@ class DocumentModel {
 	public Audits: DocumentAuditModel[];
 	public DocumentData: DocumentDataModel;
 }
+
+

@@ -1,4 +1,4 @@
-class DocumentAuditModel {
+export class DocumentAuditModel {
 	public ID: number;
 	public DocID: number;
 	public Description: string;
