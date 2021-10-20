@@ -65,6 +65,7 @@ namespace SDE_Server
             services.AddScoped<JwtHandler>();
 
             services.AddTransient<UserRepository>();
+            services.AddTransient<OrganizationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

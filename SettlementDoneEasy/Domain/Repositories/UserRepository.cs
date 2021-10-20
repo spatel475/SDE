@@ -21,20 +21,23 @@ namespace SDE_Server.Domain.Repositories
             _userManager = userManager;
         }
 
+        public async Task<string> GetAllForTesting()
+        {
+            return JsonSerializer.Serialize(_dbContext.Users.ToList());
+        }
+
         public async Task<UserModel> GetUserByEmail(string email)
         {
-            Users user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
-
-            return new UserModel
+            return await _dbContext.Users.Select(user => new UserModel
             {
                 ID = user.ID,
                 Email = user.Email,
                 Username = user.Username,
                 Organization = new OrganizationModel
                 {
-                    //ID = user.OrganizationID.Value
+                    ID = user.OrganizationID.Value
                 }
-            };
+            }).FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<UserModel> Create(UserModel user)
@@ -42,14 +45,13 @@ namespace SDE_Server.Domain.Repositories
             IdentityUser iUser = await CreateIdentityUserAsync(user);
             Users newUser = new()
             {
-                Username = user.Username,
-                Email = user.Email,
+                Username = iUser.UserName,
+                Email = iUser.Email,
                 OrganizationID = user.Organization?.ID
             };
 
-            _dbContext.Users.AddAsync(newUser);
-            _dbContext.SaveChangesAsync();
-
+            await _dbContext.Users.AddAsync(newUser);
+            await _dbContext.SaveChangesAsync();
             return await GetUserByEmail(user.Email);
         }
 
@@ -64,7 +66,7 @@ namespace SDE_Server.Domain.Repositories
             if (!createIdentityResult.Succeeded)
             {
                 List<string> errorDescriptions = createIdentityResult.Errors.Select(err => err.Description).ToList();
-                throw new Exception(JsonSerializer.Serialize(errorDescriptions));
+                throw new Exception("CREATE_USER_IDENTITY_EXCEPTION:" + JsonSerializer.Serialize(errorDescriptions));
             }
 
             return await _userManager.FindByNameAsync(user.Username);

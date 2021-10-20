@@ -1,26 +1,27 @@
-using System.Linq;
+using System;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
-using SDE_Server.Domain.Entities;
 using SDE_Server.Domain.Repositories;
 using SDE_Server.Hubs;
 using SDE_Server.Models;
+using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace SDE_Server.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IHubContext<ServerHub> _hubContext;
-        private readonly SDEDBContext _context;
         private readonly UserRepository _userRepository;
 
-        public UsersController(SDEDBContext context, IHubContext<ServerHub> hubContext, UserRepository userRepository)
+        public UsersController(IHubContext<ServerHub> hubContext, UserRepository userRepository)
         {
-            _context = context;
             _hubContext = hubContext;
             _userRepository = userRepository;
         }
@@ -29,14 +30,13 @@ namespace SDE_Server.API.Controllers
         public async Task<string> Index()
         {
             await _hubContext.Clients.All.SendAsync("TestSuccessful", "String coming from SIGNALR HUB");
-            return "String coming from CONTROLLER";
+            return await _userRepository.GetAllForTesting();
         }
 
         [HttpPost("Create")]
-        public async Task<UserModel> Create([FromBody] UserModel loginModel)
+        public async Task<UserModel> Create([FromBody] UserModel user)
         {
-            return await _userRepository.Create(loginModel);
-
+            return await _userRepository.Create(user);
         }
     }
 }

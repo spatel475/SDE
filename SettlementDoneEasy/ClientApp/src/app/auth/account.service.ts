@@ -5,7 +5,7 @@ import { map } from "rxjs/operators";
 import { ApiService } from "../services/api/api.service";
 import { UserModel } from "../models/UserModel";
 import { LoginReponseModel } from "../models/login/LoginResponseModel";
-import { loginModel } from "../models/login/LoginModel";
+import { LoginModel } from "../models/login/LoginModel";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
@@ -22,7 +22,7 @@ export class AccountService {
 		return this.userSubject.value;
 	}
 
-	login(login: loginModel) {
+	login(login: LoginModel) {
 		let observer = this.api.post<LoginReponseModel>(`auth/login`, login);
 		observer.subscribe(((response: LoginReponseModel) => {
 			if (response.isAuthSuccessful) {
@@ -43,11 +43,11 @@ export class AccountService {
 	}
 
 	register(user: UserModel) {
-		return this.api.post(`users/register`, user);
+		return this.api.post(`users/create`, user);
 	}
 
 	getAll() {
-		return this.api.get<UserModel[]>(`users`);
+		return this.api.get<UserModel[]>(`users`)
 	}
 
 	getById(id: string) {

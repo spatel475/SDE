@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AccountService } from "src/app/auth/account.service";
-import { loginModel } from "src/app/models/login/LoginModel";
+import { LoginModel } from "src/app/models/login/LoginModel";
 import { LoginReponseModel } from "src/app/models/login/LoginResponseModel";
 import { ApiService } from "src/app/services/api/api.service";
 
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 		this.submitted = true;
 		this.loading = true;
 
-		let loginModel: loginModel = {
+		let loginModel: LoginModel = {
 			email: this.f.email.value,
 			password: this.f.password.value
 		}
@@ -74,7 +74,8 @@ export class LoginComponent implements OnInit {
 					this.loading = false;
 				},
 				(error) => {
-					this.toastr.error(error);
+					this.toastr.error('Unknown error during login');
+					console.warn(error);
 					this.loading = false;
 				}
 			);
