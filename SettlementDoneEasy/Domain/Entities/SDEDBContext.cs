@@ -135,7 +135,11 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Document>(entity =>
             {
+                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Data).IsUnicode(false);
+
+                entity.Property(e => e.Title).IsUnicode(false);
 
                 entity.HasOne(d => d.Template)
                     .WithMany(p => p.Document)
@@ -150,6 +154,8 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<DocumentAudit>(entity =>
             {
+                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false);

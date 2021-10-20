@@ -12,6 +12,7 @@ namespace SDE_Server.Domain.Entities
         public string Description { get; set; }
         public string FlowState { get; set; }
         public int State { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public virtual Document Doc { get; set; }
     }
