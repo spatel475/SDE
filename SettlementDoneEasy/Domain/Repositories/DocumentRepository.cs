@@ -10,9 +10,9 @@ namespace SDE_Server.Domain.Repositories
 {
     public class DocumentRepository
     {
-        private sqldbsdedevContext _dbContext;
+        private SDEDBContext _dbContext;
 
-        public DocumentRepository(sqldbsdedevContext dbContext)
+        public DocumentRepository(SDEDBContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -62,8 +62,8 @@ namespace SDE_Server.Domain.Repositories
             return new DocumentDataModel
             {
                 ID = documentData.ID,
-                AdjustedData = documentData.AdjustedData,
-                ArchiveData = documentData.ArchiveData
+                AdjustedData = Convert.ToBase64String(documentData.AdjustedData),
+                ArchiveData = Convert.ToBase64String(documentData.ArchiveData)
             };
         }
     }

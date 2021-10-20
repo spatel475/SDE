@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using SDE_Server.Domain.Entities;
 using SDE_Server.Domain.Repositories;
 using SDE_Server.Hubs;
 using SDE_Server.Models;
