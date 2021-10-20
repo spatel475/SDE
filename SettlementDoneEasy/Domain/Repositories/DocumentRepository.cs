@@ -17,7 +17,7 @@ namespace SDE_Server.Domain.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task Create(DocumentModel document)
+        public async Task Create(DocumentModel document) 
         {
             _dbContext.Document.Add(new Document
             {
@@ -63,7 +63,7 @@ namespace SDE_Server.Domain.Repositories
             {
                 ID = documentData.ID,
                 AdjustedData = Convert.ToBase64String(documentData.AdjustedData),
-                ArchiveData = Convert.ToBase64String(documentData.ArchiveData)
+                ArchiveData = Convert.ToBase64String(documentData.ArchiveData)  
             };
         }
     }
