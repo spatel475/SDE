@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,19 +53,26 @@ namespace SDE_Server.Domain.ReleaseStatemachine
                 .PermitIf(ReleaseTrigger.Transmit, ReleaseState.P2_Received);
 
             Statemachine.Configure(ReleaseState.P1_Edit)
-                //.OnEntryFrom(saveTrigger, (email1, email2) => { GlobalContext.KeyPairs["P2_EMAIL"] = email1})
                 .Permit(ReleaseTrigger.Save, ReleaseState.P1_Draft)
                 .Permit(ReleaseTrigger.Trash, ReleaseState.P1_Trash);
+
+            Statemachine.Configure(ReleaseState.P1_Rejected)
+               .Permit(ReleaseTrigger.Archive, ReleaseState.P1_Archive)
+               .Permit(ReleaseTrigger.Edit, ReleaseState.P1_Edit)
+               .Permit(ReleaseTrigger.Trash, ReleaseState.P1_Trash);
+
+            Statemachine.Configure(ReleaseState.P1_Trash);
 
             Statemachine.Configure(ReleaseState.P2_Received)
                 .Permit(ReleaseTrigger.Accept, ReleaseState.P2_Accepted)
                 .Permit(ReleaseTrigger.Reject, ReleaseState.P1_Rejected);
 
-            Statemachine.Configure(ReleaseState.P1_Rejected);
-            Statemachine.Configure(ReleaseState.P1_Trash);
-            Statemachine.Configure(ReleaseState.P2_Accepted);
-            Statemachine.Configure(ReleaseState.P2_Received);
-            Statemachine.Configure(ReleaseState.P3_Recieved);
+            Statemachine.Configure(ReleaseState.P2_Accepted)
+                .Permit(ReleaseTrigger.Transmit, ReleaseState.P3_Recieved);
+
+            Statemachine.Configure(ReleaseState.P3_Recieved)
+                .Permit(ReleaseTrigger.Reject, ReleaseState.P1_Rejected)
+                .Permit(ReleaseTrigger.Accept, ReleaseState.P1_Complete);
         }
 
         public string ToDotMap()
