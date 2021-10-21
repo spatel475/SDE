@@ -17,7 +17,7 @@ namespace SDE_Server.Domain.Entities
         public int ID { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public int? OrganizationID { get; set; }
+        public int OrganizationID { get; set; }
 
         public virtual Organization Organization { get; set; }
         public virtual ICollection<Document> Document { get; set; }
