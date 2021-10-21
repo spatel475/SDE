@@ -6,6 +6,7 @@ import { AccountService } from "src/app/auth/account.service";
 import { LoginModel } from "src/app/models/login/LoginModel";
 import { LoginReponseModel } from "src/app/models/login/LoginResponseModel";
 import { ApiService } from "src/app/services/api/api.service";
+import { AppdataService } from "src/app/services/app-data/appdata.service";
 
 @Component({
 	selector: "app-login",
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private accountService: AccountService,
 		private toastr: ToastrService,
+		private appdata: AppdataService
 	) {
 		this.accountService.user.subscribe((x) => this.router.navigateByUrl(''));
 	}
@@ -82,6 +84,9 @@ export class LoginComponent implements OnInit {
 	}
 
 	private onSuccesfulLogin(response: LoginReponseModel) {
+
+		this.appdata.setUser(response.user);
+
 		this.router.navigateByUrl('');
 	}
 

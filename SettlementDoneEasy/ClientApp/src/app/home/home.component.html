@@ -4,13 +4,14 @@
 		<a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
 			[routerLinkActiveOptions]="{ exact: true }">Home</a>
 		<a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+		<a class="nav-item nav-link">Create</a>
 		<a class="nav-item nav-link" (click)="logout()">Logout</a>
 	</div>
 </nav>
 
 <!-- main app container -->
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
-	<div class="p-4">
+	<!-- <div class="p-4">
 		<div class="container">
 			<h1>Hi {{user.username}}!</h1>
 			<p>You're logged in to SDE</p>
@@ -18,5 +19,7 @@
 			<p>or log out entirely</p>
 			<p><a routerLink="/users">Manage Users</a></p>
 		</div>
-	</div>
+	</div> -->
+	<document-create-view [UserId]="this.user.id"></document-create-view>
+	<document-grid></document-grid>
 </div>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System;
+using SDE_Server.Domain.ReleaseStatemachine;
 
 namespace SDE_Server
 {
@@ -11,6 +12,8 @@ namespace SDE_Server
         public static void Main(string[] args)
         {
             Console.WriteLine(JsonConvert.SerializeObject(AppSettings.GetSettings()));
+            Console.WriteLine("\nStatemachine Digraph: \n:" + new ReleaseMachine().ToDotMap());
+            Console.WriteLine("\nStatemachine JSON: \n:" + new ReleaseMachine().ToJson());
             CreateHostBuilder(args).Build().Run();
         }
 

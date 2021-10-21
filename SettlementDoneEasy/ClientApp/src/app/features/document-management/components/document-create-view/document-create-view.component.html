@@ -1,0 +1,10 @@
+<div class="component-wrapper">
+	<form class="example-form">
+		<mat-form-field appearance="legacy">
+			<mat-label>Title</mat-label>
+			<input matInput [(ngModel)]="this.documentState.Title" name="Title">
+		</mat-form-field>
+
+	</form>
+	<button mat-button color="primary" (click)="onSubmit()">Primary</button>
+</div>
