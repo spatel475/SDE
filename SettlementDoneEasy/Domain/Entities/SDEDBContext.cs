@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -139,16 +139,20 @@ namespace SDE_Server.Domain.Entities
 
                 entity.Property(e => e.Data).IsUnicode(false);
 
-                entity.Property(e => e.Title).IsUnicode(false);
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Template)
                     .WithMany(p => p.Document)
                     .HasForeignKey(d => d.TemplateID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Document_DocumentTemplate");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Document)
                     .HasForeignKey(d => d.UserID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Document.UserID");
             });
 
@@ -213,30 +217,41 @@ namespace SDE_Server.Domain.Entities
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.DocID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentUser_Document");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.UserID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentUser.UserID");
             });
 
             modelBuilder.Entity<Organization>(entity =>
             {
-                entity.Property(e => e.Name).IsUnicode(false);
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Type).IsUnicode(false);
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.Property(e => e.Email).IsUnicode(false);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Username).IsUnicode(false);
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.OrganizationID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users.OrganizationID");
             });
 
