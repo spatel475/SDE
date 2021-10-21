@@ -10,6 +10,7 @@ import { DocumentService } from '../../services/document.service';
 export class DocumentGridComponent implements OnInit {
 
 	@Input() title: string;
+	@Input() documentModels: DocumentModel[] = [];
 
 	constructor() {
 
