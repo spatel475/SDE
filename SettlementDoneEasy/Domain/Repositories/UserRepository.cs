@@ -45,9 +45,9 @@ namespace SDE_Server.Domain.Repositories
             IdentityUser iUser = await CreateIdentityUserAsync(user);
             Users newUser = new()
             {
-                Username = iUser.UserName,
-                Email = iUser.Email,
-                OrganizationID = user.Organization?.ID
+                Username = user.Username,
+                Email = user.Email,
+                OrganizationID = user.Organization.ID
             };
 
             await _dbContext.Users.AddAsync(newUser);

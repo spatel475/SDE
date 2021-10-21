@@ -30,7 +30,6 @@ namespace SDE_Server.Domain.Entities
         public virtual DbSet<DocumentTemplate> DocumentTemplate { get; set; }
         public virtual DbSet<DocumentTemplateData> DocumentTemplateData { get; set; }
         public virtual DbSet<DocumentUser> DocumentUser { get; set; }
-        public virtual DbSet<FlowTemplate> FlowTemplate { get; set; }
         public virtual DbSet<Organization> Organization { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
@@ -136,21 +135,31 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<Document>(entity =>
             {
+                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Data).IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Template)
                     .WithMany(p => p.Document)
                     .HasForeignKey(d => d.TemplateID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Document_DocumentTemplate");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Document)
                     .HasForeignKey(d => d.UserID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Document.UserID");
             });
 
             modelBuilder.Entity<DocumentAudit>(entity =>
             {
+                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -162,7 +171,6 @@ namespace SDE_Server.Domain.Entities
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentAudit)
                     .HasForeignKey(d => d.DocID)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 
@@ -179,27 +187,30 @@ namespace SDE_Server.Domain.Entities
 
             modelBuilder.Entity<DocumentTemplate>(entity =>
             {
-                entity.HasOne(d => d.CreatorNavigation)
-                    .WithMany(p => p.DocumentTemplate)
-                    .HasForeignKey(d => d.Creator)
-                    .HasConstraintName("FK_DocumentTemplate_Users");
+                entity.Property(e => e.FlowName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.FlowTemplateNavigation)
+                entity.HasOne(d => d.Creator)
                     .WithMany(p => p.DocumentTemplate)
-                    .HasForeignKey(d => d.FlowTemplate)
-                    .HasConstraintName("FK_DocumentTemplate_FlowTemplate");
+                    .HasForeignKey(d => d.CreatorID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocumentTemplate_Users");
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.OrganizationID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
             });
 
             modelBuilder.Entity<DocumentTemplateData>(entity =>
             {
-                entity.HasNoKey();
-
-                entity.Property(e => e.TemplateID).ValueGeneratedOnAdd();
+                entity.HasOne(d => d.TemplateNavigation)
+                    .WithMany(p => p.DocumentTemplateData)
+                    .HasForeignKey(d => d.TemplateID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocumentTemplateData_DocumentTemplate");
             });
 
             modelBuilder.Entity<DocumentUser>(entity =>
@@ -207,37 +218,41 @@ namespace SDE_Server.Domain.Entities
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.DocID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentUser_Document");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.DocumentUser)
                     .HasForeignKey(d => d.UserID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentUser.UserID");
-            });
-
-            modelBuilder.Entity<FlowTemplate>(entity =>
-            {
-                entity.Property(e => e.Machine)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Organization>(entity =>
             {
-                entity.Property(e => e.Name).IsUnicode(false);
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Type).IsUnicode(false);
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.Property(e => e.Email).IsUnicode(false);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Username).IsUnicode(false);
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.OrganizationID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users.OrganizationID");
             });
 
