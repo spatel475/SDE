@@ -32,11 +32,8 @@ namespace SDE_Server.Domain.Repositories
             {
                 ID = user.ID,
                 Email = user.Email,
-                Username = user.Username,
-                Organization = new OrganizationModel
-                {
-                    ID = user.OrganizationID
-                }
+                Username = user.Username, 
+                Organization = OrganizationModel.MapFromEntity(user.Organization)
             }).FirstOrDefaultAsync(u => u.Email == email);
         }
 

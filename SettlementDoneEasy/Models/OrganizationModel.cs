@@ -9,14 +9,28 @@ namespace SDE_Server.Models
         public string Type { get; set; }
 
 
-        //public Organization MapToEntity()
-        //{
+        public Organization MapToEntity()
+        {
+            return new Organization()
+            {
+                ID = ID,
+                Name = Name,
+                Type = Type
+            };
 
-        //}
+        }
 
-        //public static OrganizationModel MapFromEntity(Organization entity)
-        //{
+        public static OrganizationModel MapFromEntity(Organization entity)
+        {
+            if (entity == null)
+                return null;
 
-        //}
+            return new OrganizationModel()
+            {
+                Name = entity.Name,
+                ID = entity.ID,
+                Type = entity.Type
+            };
+        }
     }
 }

@@ -13,6 +13,8 @@ export class DashboardViewComponent implements OnInit {
 	public pageState = "Active Documents";
 	public visibleDocuments: DocumentModel[];
 
+	public selectedDocuments: DocumentModel[] = [];
+
 	constructor(
 		public accountService: AccountService,
 		public documentService: DocumentService,
@@ -27,6 +29,25 @@ export class DashboardViewComponent implements OnInit {
 	}
 
 	//Ashmal
+
+	createDocument() {
+		var doc = new DocumentModel();
+		doc.title = "Draft Document";
+		this.documentService.Create(doc, this.appData.getUser().id).then(fuck => this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
+			console.log(x);
+			this.visibleDocuments = x;
+		}));
+
+
+	}
+
+	selectDocument(document: DocumentModel) {
+		this.selectedDocuments.push(document);
+	}
+
+	clearDocumentSelection() {
+		this.selectedDocuments = [];
+	}
 
 	changePageState(title: string) {
 		this.pageState = title;

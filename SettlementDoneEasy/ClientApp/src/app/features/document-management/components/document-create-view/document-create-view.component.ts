@@ -23,13 +23,8 @@ export class DocumentCreateViewComponent implements OnInit {
 	}
 
 	onSubmit() {
-		this.documentState.userId = this.UserId;
-		this.documentState.creationDate = new Date();
-		this.documentState.templateID = 1;
 
-		this.documentState.audits = [];
-
-		this.documentService.Create(this.documentState);
+		this.documentService.Create(this.documentState, this.UserId);
 		this.submitted.emit(this.documentState);
 	}
 

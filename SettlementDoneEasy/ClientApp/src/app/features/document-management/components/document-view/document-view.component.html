@@ -1,0 +1,20 @@
+<div class="view-wrapper">
+	<div class="pdf-wrapper">
+		<pdf-viewer [show-borders]="false" [original-size]="false" [autoresize]="'true'" [page]="1"
+			[src]="'data:application/pdf;base64, ' + this.document.template.templateData.template" [render-text]="true">
+		</pdf-viewer>
+	</div>
+	<div class="info-card-wrapper">
+		<div class="info-card">
+			<mat-form-field appearance="legacy">
+				<mat-label>Title</mat-label>
+				<input matInput [(ngModel)]="this.document.title" name="Title">
+			</mat-form-field>
+			<mat-form-field appearance="legacy">
+				<mat-label>Template Name</mat-label>
+				<input matInput value="Test Release" name="Title">
+			</mat-form-field>
+		</div>
+	</div>
+
+</div>

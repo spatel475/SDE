@@ -61,7 +61,9 @@
 		</div>
 	</div>
 
-	<div class="content-wrapper">
+
+
+	<div *ngIf="this.selectedDocuments.length == 0" class="content-wrapper">
 
 		<div class="side-bar-nav">
 			<div class="side-bar-widget">
@@ -78,11 +80,61 @@
 					<span class="action-content" (click)="changePageState('Archive')">Archived Documents</span>
 				</div>
 			</div>
+
+			<div class="side-bar-widget grid">
+				<div class="side-bar-widget-action" (click)="createDocument()">
+					<mat-icon class="action-icon">add</mat-icon>
+					<span class="action-content">New</span>
+				</div>
+				<div class="side-bar-widget-action">
+					<mat-icon class="action-icon">description</mat-icon>
+					<span class="action-content" (click)="changePageState('Draft')">Option #1</span>
+				</div>
+				<div class="side-bar-widget-action">
+					<mat-icon class="action-icon">home</mat-icon>
+					<span class="action-content" (click)="changePageState('Archive')">Option #2</span>
+				</div>
+			</div>
 		</div>
 
 
 		<div class="content">
-			<document-card *ngFor="let x of visibleDocuments" [Document]="x"></document-card>
+			<div class="document-grid">
+				<document-card *ngFor="let x of visibleDocuments" (click)="selectDocument(x)" [Document]="x"></document-card>
+			</div>
+			<!-- <document-grid [title]="this.pageState"></document-grid> -->
+		</div>
+	</div>
+
+	<div *ngIf="this.selectedDocuments.length == 1" class="content-wrapper">
+
+		<div class="side-bar-nav">
+			<div class="side-bar-widget">
+				<div class="side-bar-widget-action" (click)="this.clearDocumentSelection()">
+					<mat-icon class="action-icon">arrow_back</mat-icon>
+					<span class="action-content">Back</span>
+				</div>
+			</div>
+
+			<div class="side-bar-widget grid">
+				<div class="side-bar-widget-action" (click)="a">
+					<mat-icon class="action-icon">edit</mat-icon>
+					<span class="action-content">Edit</span>
+				</div>
+				<div class="side-bar-widget-action" (click)="a">
+					<mat-icon class="action-icon">delete</mat-icon>
+					<span class="action-content">Delete</span>
+				</div>
+				<div class="side-bar-widget-action" (click)="a">
+					<mat-icon class="action-icon">file_download</mat-icon>
+					<span class="action-content">Download</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="content">
+			<document-view [document]="this.selectedDocuments[0]"></document-view>
 			<!-- <document-grid [title]="this.pageState"></document-grid> -->
 		</div>
 	</div>

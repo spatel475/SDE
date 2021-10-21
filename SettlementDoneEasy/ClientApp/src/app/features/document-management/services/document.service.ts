@@ -17,8 +17,17 @@ export class DocumentService {
 		return this.apiService.get<DocumentModel[]>("Documents/GetDocumentsByUser?", userId).toPromise();
 	}
 
-	public Create(document: DocumentModel): Promise<any> {
+	public Create(document: DocumentModel, userId: number): Promise<any> {
+		document.userId = userId;
+		document.creationDate = new Date();
+		document.templateID = 1;
+
+		document.audits = [];
+
+
 		console.log(document);
+
+
 		return this.apiService.post("Documents/Create", document).toPromise()
 	}
 

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { DocumentCardComponent } from './components/document-card/document-card.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { BrowserModule } from '@angular/platform-browser';
+import { DocumentViewComponent } from './components/document-view/document-view.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 		DocumentGridComponent,
 		DocumentCreateViewComponent,
 		DocumentCardComponent,
+		DocumentViewComponent,
 	],
 	imports: [
 		CommonModule,
@@ -24,7 +26,8 @@ import { BrowserModule } from '@angular/platform-browser';
 	exports: [
 		DocumentGridComponent,
 		DocumentCreateViewComponent,
-		DocumentCardComponent
+		DocumentCardComponent,
+		DocumentViewComponent
 	]
 })
 export class DocumentManagementModule { }
