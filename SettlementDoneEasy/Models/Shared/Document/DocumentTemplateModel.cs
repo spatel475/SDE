@@ -30,6 +30,9 @@ namespace SDE_Server.Models.Document
 
         public static DocumentTemplateModel MapFromEntity(DocumentTemplate entity)
         {
+            if (entity == null)
+                return null;
+
             return new DocumentTemplateModel()
             {
                 ID = entity.ID,

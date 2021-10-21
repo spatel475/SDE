@@ -25,6 +25,9 @@ namespace SDE_Server.Models.Document
 
         public static DocumentDataModel MapFromEntity(DocumentData entity)
         {
+            if (entity == null)
+                return null;
+
             return new DocumentDataModel()
             {
                 AdjustedData = Convert.ToBase64String(entity.AdjustedData),

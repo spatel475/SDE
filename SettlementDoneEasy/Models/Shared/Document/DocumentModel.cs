@@ -8,9 +8,9 @@ namespace SDE_Server.Models.Document
     public class DocumentModel
     {
         public int ID { get; set; }
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         public string Data { get; set; }
-        public int? TemplateID { get; set; } // idk if this will be needed so i'll leave it in for now
+        public int TemplateID { get; set; } 
         public DateTime CreationDate { get; set; }
         public string Title { get; set; }
 
@@ -18,7 +18,7 @@ namespace SDE_Server.Models.Document
         public DocumentTemplateModel Template { get; set; }
         public DocumentDataModel DocumentData { get; set; }
 
-        public Domain.Entities.Document MapToDocument()
+        public Domain.Entities.Document MapToEntity()
         {
             return new Domain.Entities.Document() {
                 ID = ID,
@@ -27,25 +27,28 @@ namespace SDE_Server.Models.Document
                 TemplateID = TemplateID,
                 CreationDate = CreationDate,
                 Title = Title,
-                DocumentAudit = Audits.Select(d => d.MapToEntity()).ToList(),
-                Template = Template.MapToEntity(),
-                DocumentData = DocumentData.MapToEntity(),
+                DocumentAudit = Audits?.Select(d => d.MapToEntity()).ToList(),
+                Template = Template?.MapToEntity(),
+                DocumentData = DocumentData?.MapToEntity(),
             };
         }
 
-        public static DocumentModel MapFromDocument(Domain.Entities.Document document)
+        public static DocumentModel MapFromEntity(Domain.Entities.Document entity)
         {
+            if (entity == null)
+                return null;
+
             return new DocumentModel()
             {
-                ID = document.ID,
-                UserID = document.UserID,
-                Data = document.Data,
-                TemplateID = document.TemplateID,
-                CreationDate = document.CreationDate,
-                Title = document.Title,
-                Audits = document.DocumentAudit.Select(d => DocumentAuditModel.MapFromEntity(d)).ToList(),
-                DocumentData = DocumentDataModel.MapFromEntity(document.DocumentData),
-                Template = DocumentTemplateModel.MapFromEntity(document.Template)
+                ID = entity.ID,
+                UserID = entity.UserID,
+                Data = entity.Data,
+                TemplateID = entity.TemplateID,
+                CreationDate = entity.CreationDate,
+                Title = entity.Title,
+                Audits = entity.DocumentAudit.Select(d => DocumentAuditModel.MapFromEntity(d)).ToList(),
+                DocumentData = DocumentDataModel.MapFromEntity(entity.DocumentData),
+                Template = DocumentTemplateModel.MapFromEntity(entity.Template)
             };
         }
     }

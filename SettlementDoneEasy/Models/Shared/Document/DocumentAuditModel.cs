@@ -29,6 +29,9 @@ namespace SDE_Server.Models.Document
 
         public static DocumentAuditModel MapFromEntity(Domain.Entities.DocumentAudit entity)
         {
+            if (entity == null)
+                return null;
+
             return new DocumentAuditModel()
             {
                 CreationDate = entity.CreationDate,

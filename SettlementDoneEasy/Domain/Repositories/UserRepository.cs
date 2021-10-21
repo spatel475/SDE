@@ -44,7 +44,7 @@ namespace SDE_Server.Domain.Repositories
             {
                 Username = user.Username,
                 Email = user.Email,
-                OrganizationID = user.Organization?.ID
+                OrganizationID = user.Organization.ID
             };
 
             _dbContext.Users.AddAsync(newUser);

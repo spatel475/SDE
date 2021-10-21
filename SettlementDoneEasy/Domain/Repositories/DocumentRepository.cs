@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SDE_Server.Domain.Entities;
+using SDE_Server.Domain.ReleaseStatemachine;
 using SDE_Server.Models.Document;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,18 @@ namespace SDE_Server.Domain.Repositories
 
         public async Task Create(DocumentModel document) 
         {
-            
-            _dbContext.Document.Add(document.MapToDocument());
+            var docEntity = document.MapToEntity();
+            docEntity.DocumentAudit.Add(new DocumentAudit()
+            {
+                CreationDate = DateTime.Now,
+                Description = "Initial Creation",
+                FlowState = new ReleaseMachine().ToJson(),
+                State = (int)ReleaseState.P1_Draft,                
+            });
+
+
+            //_dbContext.Document.Add(document.MapToDocument());
+            _dbContext.Document.Add(docEntity);
 
             await _dbContext.SaveChangesAsync();
         }
@@ -43,8 +54,15 @@ namespace SDE_Server.Domain.Repositories
 
         public async Task<List<DocumentModel>> GetDocumentsByUser(int userId)
         {
-            List<Document> docs = await _dbContext.Document.Where(d => d.UserID == userId).ToListAsync();
-            return docs.Select(d => DocumentModel.MapFromDocument(d)).ToList();
+            List<Document> docs =
+                await _dbContext.Document
+                    .Where(d => d.UserID == userId)
+                    .Include(doc => doc.DocumentAudit)
+                    .Include(doc => doc.DocumentData)
+                    .Include(doc => doc.DocumentUser)
+                    .ToListAsync();
+
+            return docs.Select(d => DocumentModel.MapFromEntity(d)).ToList();
         }
 
         private async Task<DocumentDataModel> GetDocumentData(int docId)
