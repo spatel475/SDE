@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -188,14 +188,16 @@ namespace SDE_Server.Domain.Entities
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CreatorNavigation)
+                entity.HasOne(d => d.Creator)
                     .WithMany(p => p.DocumentTemplate)
-                    .HasForeignKey(d => d.Creator)
+                    .HasForeignKey(d => d.CreatorID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentTemplate_Users");
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.DocumentTemplate)
                     .HasForeignKey(d => d.OrganizationID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
             });
 
