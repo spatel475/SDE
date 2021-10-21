@@ -171,7 +171,6 @@ namespace SDE_Server.Domain.Entities
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentAudit)
                     .HasForeignKey(d => d.DocID)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentAudit_Document");
             });
 
@@ -203,13 +202,6 @@ namespace SDE_Server.Domain.Entities
                     .HasForeignKey(d => d.OrganizationID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
-            });
-
-            modelBuilder.Entity<DocumentTemplateData>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.TemplateID).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<DocumentUser>(entity =>
