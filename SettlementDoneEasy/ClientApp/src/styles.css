@@ -37,7 +37,7 @@ mat-card {
 	--primary-100: #F1F5F9;
 	--primary-50: #F8FAFC;
 
-	--gradient-900: linear-gradient(90deg, rgba(39,67,151,1) 0%, rgba(10,42,137,1) 100%);
+	--gradient-900: linear-gradient(90deg, rgba(39, 67, 151, 0.829) 0%, rgba(10,42,137,1) 100%);
 	--gradient-800: linear-gradient(90deg, rgba(148,175,255,1) 0%, rgba(89,131,255,1) 100%);
 
 	--white-900: #FFFFFF;

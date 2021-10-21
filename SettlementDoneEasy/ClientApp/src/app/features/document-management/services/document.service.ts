@@ -32,7 +32,8 @@ export class DocumentService {
 	}
 
 	public Update(document: DocumentModel) {
-
+		console.log("Sending update data", document);
+		return this.apiService.post<DocumentModel>("Documents/Update", document).toPromise();
 	}
 
 

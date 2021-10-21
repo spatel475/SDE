@@ -117,15 +117,21 @@
 			</div>
 
 			<div class="side-bar-widget grid">
-				<div class="side-bar-widget-action" (click)="a">
+				<div #edit_action class="side-bar-widget-action"
+					(click)="document_view.state = 'edit'; save_action.hidden = false; edit_action.hidden=true">
 					<mat-icon class="action-icon">edit</mat-icon>
 					<span class="action-content">Edit</span>
 				</div>
-				<div class="side-bar-widget-action" (click)="a">
+				<div [hidden]="true" #save_action class="side-bar-widget-action"
+					(click)="document_view.state = 'view'; edit_action.hidden = false; save_action.hidden = true; this.saveDocument()">
+					<mat-icon class="action-icon">save</mat-icon>
+					<span class="action-content">Save</span>
+				</div>
+				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
 					<mat-icon class="action-icon">delete</mat-icon>
 					<span class="action-content">Delete</span>
 				</div>
-				<div class="side-bar-widget-action" (click)="a">
+				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
 					<mat-icon class="action-icon">file_download</mat-icon>
 					<span class="action-content">Download</span>
 				</div>
@@ -134,7 +140,7 @@
 
 
 		<div class="content">
-			<document-view [document]="this.selectedDocuments[0]"></document-view>
+			<document-view #document_view [document]="this.selectedDocuments[0]"></document-view>
 			<!-- <document-grid [title]="this.pageState"></document-grid> -->
 		</div>
 	</div>

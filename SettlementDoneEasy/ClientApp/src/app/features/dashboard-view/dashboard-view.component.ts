@@ -53,6 +53,11 @@ export class DashboardViewComponent implements OnInit {
 		this.pageState = title;
 	}
 
+	saveDocument() {
+		console.log("Saving Document", this.selectedDocuments[0]);
+		this.documentService.Update(this.selectedDocuments[0]);
+	}
+
 	logout() {
 		console.log("Logout Pressed");
 		this.accountService.logout();

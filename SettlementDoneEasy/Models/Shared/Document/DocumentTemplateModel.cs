@@ -21,7 +21,7 @@ namespace SDE_Server.Models.Document
             {
                 ID = ID,
                 CreatorID = CreatorID,
-                Data = Convert.FromBase64String(Data),
+                Data = (Data != null) ? Convert.FromBase64String(Data) : null,
                 FlowName = FlowName,
                 OrganizationID = OrganizationID,
             };

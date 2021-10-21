@@ -38,10 +38,9 @@ namespace SDE_Server.Domain.Repositories
 
         public async Task Update(DocumentModel document)
         {
-            Document existingDoc = await _dbContext.Document.FirstOrDefaultAsync(d => d.ID == document.ID);
-            existingDoc.UserID = document.UserID;
-            existingDoc.Data = document.Data;
-            existingDoc.TemplateID = document.TemplateID;
+            //Document existingDoc = await _dbContext.Document.FirstOrDefaultAsync(d => d.ID == document.ID);
+
+            _dbContext.Update(document.MapToEntity());
 
             await _dbContext.SaveChangesAsync();
         }
@@ -60,7 +59,7 @@ namespace SDE_Server.Domain.Repositories
                     .Include(doc => doc.DocumentAudit)
                     .Include(doc => doc.DocumentData)
                     .Include(doc => doc.DocumentUser)
-                    .Include(doc => doc.Template.DocumentTemplateData)
+                    .Include(doc => doc.Template.DocumentTemplateData) 
                     .ToListAsync();
 
             return docs.Select(d => DocumentModel.MapFromEntity(d)).ToList();

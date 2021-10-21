@@ -29,7 +29,7 @@ namespace SDE_Server.API.Controllers
             _hubContext.Clients.All.SendAsync("Document");
         }
 
-        [HttpPatch("Update")]
+        [HttpPost("Update")]
         public async Task Update([FromBody] DocumentModel document)
         {
             await _documentRepository.Update(document);
