@@ -10,6 +10,7 @@ namespace SDE_Server.Domain.Entities
         public DocumentTemplate()
         {
             Document = new HashSet<Document>();
+            DocumentTemplateData = new HashSet<DocumentTemplateData>();
         }
 
         public int ID { get; set; }
@@ -21,5 +22,6 @@ namespace SDE_Server.Domain.Entities
         public virtual Users Creator { get; set; }
         public virtual Organization Organization { get; set; }
         public virtual ICollection<Document> Document { get; set; }
+        public virtual ICollection<DocumentTemplateData> DocumentTemplateData { get; set; }
     }
 }

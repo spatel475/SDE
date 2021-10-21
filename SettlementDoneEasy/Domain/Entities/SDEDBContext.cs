@@ -204,6 +204,15 @@ namespace SDE_Server.Domain.Entities
                     .HasConstraintName("FK_DocumentTemplate.OrganizationID");
             });
 
+            modelBuilder.Entity<DocumentTemplateData>(entity =>
+            {
+                entity.HasOne(d => d.TemplateNavigation)
+                    .WithMany(p => p.DocumentTemplateData)
+                    .HasForeignKey(d => d.TemplateID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DocumentTemplateData_DocumentTemplate");
+            });
+
             modelBuilder.Entity<DocumentUser>(entity =>
             {
                 entity.HasOne(d => d.Doc)
