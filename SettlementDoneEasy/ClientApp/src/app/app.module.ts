@@ -14,6 +14,7 @@ import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { RegisterComponent } from "./auth/register/register.component";
 import { UIModule } from "./ui-module";
 import { DocumentManagementModule } from "./features/document-management/document-management.module";
+import { DashboardViewModule } from "./features/dashboard-view/dashboard-view.module";
 
 @NgModule({
 	imports: [
@@ -25,7 +26,8 @@ import { DocumentManagementModule } from "./features/document-management/documen
 		FormsModule,
 		RouterModule.forRoot(AppRoutes),
 		UIModule,
-		DocumentManagementModule
+		DocumentManagementModule,
+		DashboardViewModule
 	],
 	declarations: [
 		AppComponent,

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
 	imports: [
 		RouterModule.forRoot(appRoutes),
 		MatIconModule,
-		DocumentManagementModule
+		DocumentManagementModule,
 	],
 	exports: [
 		RouterModule
