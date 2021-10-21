@@ -4,6 +4,7 @@ import { DashboardViewComponent } from './dashboard-view.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentManagementModule } from '../document-management/document-management.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 const appRoutes: Routes = [
@@ -17,7 +18,9 @@ const appRoutes: Routes = [
 	imports: [
 		RouterModule.forRoot(appRoutes),
 		MatIconModule,
+		CommonModule,
 		DocumentManagementModule,
+		MatMenuModule
 	],
 	exports: [
 		RouterModule

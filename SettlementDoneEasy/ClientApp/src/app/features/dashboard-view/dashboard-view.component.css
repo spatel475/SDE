@@ -11,14 +11,15 @@
 	min-height: 50px;
 }
 
-/* 
+
 .side-bar-nav {
 	display: flex;
 	flex-direction: column;
-	flex-grow: 1;
-	flex-basis: 20%;
+	flex: 1;
+	flex-basis: 10%;
+	max-width: 350px;
 	min-width: 25px;
-	padding-top: 20%;
+	margin-top: -25px;
 }
 
 .side-bar-widget {
@@ -28,9 +29,8 @@
 
 	border-radius: 8px;
 	background-color: white;
-	box-shadow: var(--drop-shadow-3);
+	box-shadow: var(--drop-shadow-2);
 	overflow: clip;
-	margin: 15px;
 }
 
 .side-bar-widget-action {
@@ -44,7 +44,7 @@
 	background-color: lightblue;
 	cursor: pointer;
 	
-} */
+}
 
 .action-content {
 	flex: 1;
@@ -58,23 +58,116 @@
 
 .content-wrapper {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	flex-grow: 1;
 	flex-basis: 95%;
 	background-color: var(--primary-100);
+	padding: 0px 15px 0px 15px;
+	gap: 15px;
 }
 
 .content {
-	border-color: red;
-	border-style: solid;
-	border-width: 1px;
 	margin-top: -25px;
-	margin-left: 5%;
-	margin-right: 5%;
+	/* margin-left: 5%;
+	margin-right: 5%; */
+
+	flex: 1;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 15px;
 
 	/* background-color: var(--white-900); */
 }
 
-.top-nav {
+.nav-bar {
+	display: flex;
+	flex-direction: row;
+	border-width: 1px;
+	border-style: solid;
+	border-color: red;
+	padding: 15px;
+}
+
+.product-title-wrapper {
+	flex: 1;
+	padding: 15px;
+}
+
+.product-title {
+	font-size: 25px;
+	color: var(--white-900);
+}
+
+.nav-actions {
+	display: flex;
+	flex-direction: row;
+}
+
+
+.user-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 15px;
+
+	color: var(--white-900);
+}
+
+.user-info:hover {
+	cursor: pointer;
+	background-color: var(--primary-300);
+	border-radius: 8px;
+	color: var(--black-900);
+}
+
+
+
+
+.user-info-content {
+	display: flex;
+	flex-direction: column;
+	min-width: 100px;
+}
+
+.user-icon-wrapper {
+	display: flex;
+	flex-grow: 0;
+	justify-content: center;
+	align-items: center;
 	
+}
+
+.user-icon {
+	height: 40px;
+	width: 40px;
+	background-color: var(--primary-700);
+	border-radius: 100%;
+	margin-right: 15px;
+}
+
+.user-info-name {
+	color: inherit;
+	font-size: 17px;
+}
+
+.user-info-org {
+	
+}
+.icon-wrapper {
+	display: flex;
+	align-items: center;
+	
+}
+
+.icon {
+	color: inherit;
+	font-size: 30px;
+}
+
+mat-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

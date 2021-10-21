@@ -35,7 +35,7 @@ namespace SDE_Server.Domain.Repositories
                 Username = user.Username,
                 Organization = new OrganizationModel
                 {
-                    ID = user.OrganizationID.Value
+                    ID = user.OrganizationID
                 }
             }).FirstOrDefaultAsync(u => u.Email == email);
         }

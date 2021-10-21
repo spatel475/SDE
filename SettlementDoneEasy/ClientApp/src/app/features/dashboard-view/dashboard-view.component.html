@@ -1,3 +1,9 @@
+<mat-menu #menu="matMenu" xPosition="after">
+	<button mat-menu-item (click)="logout()">
+		<span>Logout</span>
+	</button>
+</mat-menu>
+
 <!--Ledarrious-->
 <div class="page-wrapper">
 	<!-- <div class="side-bar-nav">
@@ -33,12 +39,51 @@
 
 	</div> -->
 	<div class="nav-bar">
-		t
+		<div class="product-title-wrapper">
+			<div class="product-title">Settlement Done Easy</div>
+		</div>
+
+		<!-- <div class="nav-actions">
+			<div class="action-item">Logout</div>
+			<div class="action-item">Logout</div>
+		</div> -->
+		<div class="user-info-wrapper">
+			<div class="user-info" [matMenuTriggerFor]="menu">
+				<div class="user-icon"></div>
+				<div class="user-info-content">
+					<div class="user-info-name">{{this.appData.getUser().username}}</div>
+					<div class="user-info-org">{{this.appData.getUser().organization.name}}</div>
+				</div>
+				<div class="icon-wrapper">
+					<mat-icon class="icon">arrow_drop_down</mat-icon>
+				</div>
+			</div>
+		</div>
 	</div>
+
 	<div class="content-wrapper">
 
+		<div class="side-bar-nav">
+			<div class="side-bar-widget">
+				<div class="side-bar-widget-action">
+					<mat-icon class="action-icon">home</mat-icon>
+					<span class="action-content" (click)="changePageState('Active')">Active Documents</span>
+				</div>
+				<div class="side-bar-widget-action">
+					<mat-icon class="action-icon">description</mat-icon>
+					<span class="action-content" (click)="changePageState('Draft')">Drafts Documents</span>
+				</div>
+				<div class="side-bar-widget-action">
+					<mat-icon class="action-icon">home</mat-icon>
+					<span class="action-content" (click)="changePageState('Archive')">Archived Documents</span>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="content">
-			<document-grid [title]="this.pageState"></document-grid>
+			<document-card *ngFor="let x of visibleDocuments" [Document]="x"></document-card>
+			<!-- <document-grid [title]="this.pageState"></document-grid> -->
 		</div>
 	</div>
 </div>

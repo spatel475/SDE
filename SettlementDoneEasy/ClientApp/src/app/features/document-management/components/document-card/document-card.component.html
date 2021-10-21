@@ -3,12 +3,17 @@
 	<pdf-viewer [show-borders]="false" [original-size]="false" [autoresize]="'true'" [page]="1" [show-all]="false"
 		[src]="'data:application/pdf;base64, ' + this.Document.template.templateData.template" [render-text]="true">
 	</pdf-viewer>
-	<div class="content">
-		<div class="title">
-			{{this.Document.title}}
+	<div class="footer">
+		<div class="content">
+			<div class="title">
+				{{this.Document.title}}
+			</div>
+			<div class="date">
+				{{formatDate(this.Document.creationDate)}}
+			</div>
 		</div>
-		<div class="date">
-			{{formatDate(this.Document.creationDate)}}
+		<div class="creator-icon-wrapper">
+			<span class="creator-icon"></span>
 		</div>
 	</div>
 

@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { DocumentCardComponent } from './components/document-card/document-card.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 		CommonModule,
 		MatInputModule,
 		FormsModule,
-		PdfViewerModule
+		PdfViewerModule,
 	],
 	exports: [
 		DocumentGridComponent,
