@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DocumentGridComponent } from './components/document-grid/document-grid.component';
 import { DocumentCreateViewComponent } from './components/document-create-view/document-create-view.component';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,10 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 	],
 	imports: [
 		CommonModule,
-		MatInputModule
+		MatInputModule,
+		FormsModule
 	],
 	exports: [
-		DocumentGridComponent
+		DocumentGridComponent,
+		DocumentCreateViewComponent
 	]
 })
 export class DocumentManagementModule { }

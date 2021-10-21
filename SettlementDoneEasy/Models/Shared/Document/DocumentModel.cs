@@ -14,22 +14,39 @@ namespace SDE_Server.Models.Document
         public DateTime CreationDate { get; set; }
         public string Title { get; set; }
 
-        public DocumentAuditModel Audits { get; set; }
+        public List<DocumentAuditModel> Audits { get; set; }
         public DocumentTemplateDataModel Template { get; set; }
         public DocumentDataModel DocumentData { get; set; }
 
         public Domain.Entities.Document MapToDocument()
         {
-            var document = new Domain.Entities.Document();
+            return new Domain.Entities.Document() {
+                ID = ID,
+                UserID = UserID,
+                Data = Data,
+                TemplateID = TemplateID,
+                CreationDate = CreationDate,
+                Title = Title,
+                DocumentAudit = Audits.Select(d => d.MapToEntity()).ToList(),
+                Template = Template.MapToEntity(),
+                DocumentData = DocumentData.MapToEntity(),
+            };
+        }
 
-            document.ID = ID;
-            document.UserID = UserID;
-            document.Data = Data;
-            document.TemplateID = TemplateID;
-            document.CreationDate = CreationDate;
-            document.Title = Title;
-
-            return document;
+        public static DocumentModel MapFromDocument(Domain.Entities.Document document)
+        {
+            return new DocumentModel()
+            {
+                ID = document.ID,
+                UserID = document.UserID,
+                Data = document.Data,
+                TemplateID = document.TemplateID,
+                CreationDate = document.CreationDate,
+                Title = document.Title,
+                Audits = document.DocumentAudit.Select(d => DocumentAuditModel.MapFromEntity(d)).ToList(),
+                DocumentData = document.DocumentData,
+                Template = document.Template
+            };
         }
     }
 }

@@ -15,21 +15,16 @@ namespace SDE_Server.API.Controllers
         private readonly IHubContext<ServerHub> _hubContext;
         private readonly DocumentRepository _documentRepository;
 
-        public DocumentsController(IHubContext<ServerHub> hubContext, DocumentRepository documentRepo)
+        public DocumentsController(IHubContext<ServerHub> hubContext)
         {
             _hubContext = hubContext;
-            _documentRepository = documentRepo;
+            _documentRepository = new DocumentRepository();
         }
 
         [HttpPost("Create")]
         public async Task Create([FromBody] DocumentModel document)
         {
-            
-
-
-
-            //await _documentRepository.Create(document);
-
+            await _documentRepository.Create(document);
             // idk how/if we want to provide live updates since nothing is listening for it in front-end
             _hubContext.Clients.All.SendAsync("Document");
         }

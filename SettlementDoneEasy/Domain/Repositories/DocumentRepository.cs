@@ -12,19 +12,16 @@ namespace SDE_Server.Domain.Repositories
     {
         private SDEDBContext _dbContext;
 
-        public DocumentRepository(SDEDBContext dbContext)
+        public DocumentRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new SDEDBContext();
         }
 
         public async Task Create(DocumentModel document) 
         {
-            _dbContext.Document.Add(new Document
-            {
-                UserID = document.UserID,
-                Data = document.Data,
-                TemplateID = document.TemplateID
-            });
+            
+            _dbContext.Document.Add(document.MapToDocument());
+
             await _dbContext.SaveChangesAsync();
         }
 
@@ -47,13 +44,7 @@ namespace SDE_Server.Domain.Repositories
         public async Task<List<DocumentModel>> GetDocumentsByUser(int userId)
         {
             List<Document> docs = await _dbContext.Document.Where(d => d.UserID == userId).ToListAsync();
-            return docs.Select(d => new DocumentModel
-            {
-                ID = d.ID,
-                Data = d.Data,
-                DocumentData = GetDocumentData(d.ID).Result,
-                UserID = d.UserID
-            }).ToList();
+            return docs.Select(d => DocumentModel.MapFromDocument(d)).ToList();
         }
 
         private async Task<DocumentDataModel> GetDocumentData(int docId)
