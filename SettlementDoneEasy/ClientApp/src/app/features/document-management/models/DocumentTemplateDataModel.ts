@@ -1,4 +1,4 @@
 export class DocumentTemplateDataModel {
-	public TemplateID: number;
-	public Template: string;
+	public templateID: number;
+	public template: string;
 }

@@ -47,7 +47,7 @@ namespace SDE_Server.Models.Document
                 CreationDate = entity.CreationDate,
                 Title = entity.Title,
                 Audits = entity.DocumentAudit.Select(d => DocumentAuditModel.MapFromEntity(d)).ToList(),
-                DocumentData = DocumentDataModel.MapFromEntity(entity.DocumentData),
+                DocumentData = (entity.DocumentData != null) ? DocumentDataModel.MapFromEntity(entity.DocumentData) : null,
                 Template = DocumentTemplateModel.MapFromEntity(entity.Template)
             };
         }

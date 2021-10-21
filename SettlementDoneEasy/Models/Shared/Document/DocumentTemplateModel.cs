@@ -13,7 +13,7 @@ namespace SDE_Server.Models.Document
         public int CreatorID { get; set; }
         public string FlowName { get; set; }
         public string Data { get; set; }
-
+        public DocumentTemplateDataModel TemplateData { get; set; }
 
         public DocumentTemplate MapToEntity()
         {
@@ -37,9 +37,10 @@ namespace SDE_Server.Models.Document
             {
                 ID = entity.ID,
                 CreatorID = entity.CreatorID,
-                Data = Convert.ToBase64String(entity.Data),
+                Data = (entity.Data != null) ? Convert.ToBase64String(entity.Data) : null,
                 FlowName = entity.FlowName,
                 OrganizationID = entity.OrganizationID,
+                TemplateData = (entity.DocumentTemplateData.FirstOrDefault() != null) ? DocumentTemplateDataModel.MapFromEntity(entity.DocumentTemplateData.FirstOrDefault()) : null
             };
         }
 
