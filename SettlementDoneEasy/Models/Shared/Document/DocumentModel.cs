@@ -15,7 +15,7 @@ namespace SDE_Server.Models.Document
         public string Title { get; set; }
 
         public List<DocumentAuditModel> Audits { get; set; }
-        public DocumentTemplateDataModel Template { get; set; }
+        public DocumentTemplateModel Template { get; set; }
         public DocumentDataModel DocumentData { get; set; }
 
         public Domain.Entities.Document MapToDocument()
@@ -44,8 +44,8 @@ namespace SDE_Server.Models.Document
                 CreationDate = document.CreationDate,
                 Title = document.Title,
                 Audits = document.DocumentAudit.Select(d => DocumentAuditModel.MapFromEntity(d)).ToList(),
-                DocumentData = document.DocumentData,
-                Template = document.Template
+                DocumentData = DocumentDataModel.MapFromEntity(document.DocumentData),
+                Template = DocumentTemplateModel.MapFromEntity(document.Template)
             };
         }
     }

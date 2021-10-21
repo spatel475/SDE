@@ -10,7 +10,7 @@ namespace SDE_Server.Models.Document
     {
         public int ID { get; set; }
         public int OrganizationID { get; set; }
-        public int Creator { get; set; }
+        public int CreatorID { get; set; }
         public string FlowName { get; set; }
         public string Data { get; set; }
 
@@ -20,7 +20,7 @@ namespace SDE_Server.Models.Document
             return new DocumentTemplate()
             {
                 ID = ID,
-                Creator = Creator,
+                CreatorID = CreatorID,
                 Data = Convert.FromBase64String(Data),
                 FlowName = FlowName,
                 OrganizationID = OrganizationID,
@@ -33,10 +33,10 @@ namespace SDE_Server.Models.Document
             return new DocumentTemplateModel()
             {
                 ID = entity.ID,
-                Creator = entity.Creator,
+                CreatorID = entity.CreatorID,
                 Data = Convert.ToBase64String(entity.Data),
-                FlowName = FlowName,
-                OrganizationID = OrganizationID,
+                FlowName = entity.FlowName,
+                OrganizationID = entity.OrganizationID,
             };
         }
 
