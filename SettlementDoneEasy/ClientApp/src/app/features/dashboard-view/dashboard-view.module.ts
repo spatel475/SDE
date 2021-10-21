@@ -6,17 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { DocumentManagementModule } from '../document-management/document-management.module';
 import { MatMenuModule } from '@angular/material/menu';
 
-
-const appRoutes: Routes = [
-	{ path: '', component: DashboardViewComponent },
-];
-
 @NgModule({
 	declarations: [
 		DashboardViewComponent,
 	],
 	imports: [
-		RouterModule.forRoot(appRoutes),
 		MatIconModule,
 		CommonModule,
 		DocumentManagementModule,

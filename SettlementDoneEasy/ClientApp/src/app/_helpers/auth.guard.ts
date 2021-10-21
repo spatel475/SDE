@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
 		if (!token) {
 			// not logged in so redirect to login page with the return url
 			this.router.navigateByUrl("login");
+			console.log("REDIRECTED")
 			return false;
 		}
 
