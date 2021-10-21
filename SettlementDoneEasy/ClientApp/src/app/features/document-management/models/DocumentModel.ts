@@ -3,17 +3,17 @@ import { DocumentDataModel } from "./DocumentDataModel";
 import { DocumentTemplateModel } from "./DocumentTemplateModel";
 
 export class DocumentModel {
-	public ID: number;
-	public UserId: number;
-	public Data: string;
-	public TemplateID: number;
-	public CreationDate: Date;
-	public Title: string;
+	public id: number;
+	public userId: number;
+	public data: string;
+	public templateID: number;
+	public creationDate: Date;
+	public title: string;
 
 
-	public Template: DocumentTemplateModel;
-	public Audits: DocumentAuditModel[];
-	public DocumentData: DocumentDataModel;
+	public template: DocumentTemplateModel;
+	public audits: DocumentAuditModel[];
+	public documentData: DocumentDataModel;
 }
 
 

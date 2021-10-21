@@ -60,6 +60,7 @@ namespace SDE_Server.Domain.Repositories
                     .Include(doc => doc.DocumentAudit)
                     .Include(doc => doc.DocumentData)
                     .Include(doc => doc.DocumentUser)
+                    .Include(doc => doc.Template.DocumentTemplateData)
                     .ToListAsync();
 
             return docs.Select(d => DocumentModel.MapFromEntity(d)).ToList();

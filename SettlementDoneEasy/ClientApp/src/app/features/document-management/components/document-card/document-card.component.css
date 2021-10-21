@@ -1,0 +1,36 @@
+.card-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 250px;
+
+	max-width: 200px;
+
+	background-color: var(--)
+}
+
+:host /deep/ .ng2-pdf-viewer-container {
+	overflow: hidden;
+}
+
+pdf-viewer {
+	display: block;
+	flex: 1;
+	position: relative;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+	font-size: 16px;
+}
+
+.date {
+	display: flex;
+	flex-direction: row;
+	font-size: 16px;
+}

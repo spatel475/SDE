@@ -4,21 +4,26 @@ import { DocumentGridComponent } from './components/document-grid/document-grid.
 import { DocumentCreateViewComponent } from './components/document-create-view/document-create-view.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { DocumentCardComponent } from './components/document-card/document-card.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
 	declarations: [
 		DocumentGridComponent,
 		DocumentCreateViewComponent,
+		DocumentCardComponent,
 	],
 	imports: [
 		CommonModule,
 		MatInputModule,
-		FormsModule
+		FormsModule,
+		PdfViewerModule
 	],
 	exports: [
 		DocumentGridComponent,
-		DocumentCreateViewComponent
+		DocumentCreateViewComponent,
+		DocumentCardComponent
 	]
 })
 export class DocumentManagementModule { }
