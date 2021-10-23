@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-10-23T15:59:19.495Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36" etag="zZVXRj65gIlJUIfL_QUs" version="15.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-23T23:10:26.269Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36" etag="lybUBaF8fzy_O3FSFDDE" version="15.5.8" type="github">
   <diagram id="lfC0ByhFtauwIvqrp0FH" name="Page-1">
-    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1822" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -74,6 +74,85 @@
               <mxPoint x="100" y="220" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="33" y="662" width="463" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-6" value="DB" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="44" y="676" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-7" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-6" target="p3LpaJ7SLReFV50FGkmS-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="116" y="729" as="sourcePoint" />
+            <mxPoint x="166" y="679" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-8" target="p3LpaJ7SLReFV50FGkmS-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-8" value="DOMAIN" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="676" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-9" value="API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-12" target="p3LpaJ7SLReFV50FGkmS-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-12" value="Website" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="363" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-15" value="&lt;b&gt;Server Component&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;&quot;&gt;Server component is the collection of all server side systems running on the server hosting the website.&amp;nbsp;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="507" y="662" width="170" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-17" value="&lt;b&gt;Website &lt;/b&gt;makes call to the controllers in &lt;b&gt;API&amp;nbsp;&lt;/b&gt;&amp;nbsp;which communicate with the &lt;b&gt;Domain&lt;/b&gt;&amp;nbsp;containing domain related code&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="509" y="759" width="170" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-18" target="p3LpaJ7SLReFV50FGkmS-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-18" target="p3LpaJ7SLReFV50FGkmS-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-18" value="Login Page" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-16" y="953" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-19" target="p3LpaJ7SLReFV50FGkmS-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-19" target="p3LpaJ7SLReFV50FGkmS-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-19" target="p3LpaJ7SLReFV50FGkmS-32">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="512" y="1007" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-19" value="Main Dashboard" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="218" y="953" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-20" value="Individual Document Page" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="188" y="1072" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-23" value="Sign up" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-16" y="1072" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-26" value="Edit User" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="552" y="953" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-29" value="Upload Template" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1072" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-31" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="p3LpaJ7SLReFV50FGkmS-20" target="p3LpaJ7SLReFV50FGkmS-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="161" y="1098" as="sourcePoint" />
+            <mxPoint x="211" y="1048" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3LpaJ7SLReFV50FGkmS-32" value="Organization" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="552" y="1072" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
