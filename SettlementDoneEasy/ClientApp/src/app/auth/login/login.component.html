@@ -1,6 +1,30 @@
-<p>login works!</p>
-<p>
-  add a form that accepts username and password. password should not be plain
-  text
-</p>
-<button mat-flat-button (click)="login()">Login</button>
+<div class="container">
+	<div class="form-container">
+		<mat-card class="form">
+			<h1 class="mat-headline">Login</h1>
+			<mat-card-content>
+				<form [formGroup]="userLoginForm">
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Email</mat-label>
+						<input formControlName="email" matInput type="email" placeholder="john123@email.com"
+							[required]="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+					</mat-form-field>
+					<mat-form-field class="full-width" appearance="outline">
+						<mat-label>Password</mat-label>
+						<input id="password" type="password" formControlName="password" matInput [required]="true"
+							[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+						<mat-icon matSuffix style="cursor: pointer;" (click)="togglePasswordVisibility('password')">
+							visibility</mat-icon>
+					</mat-form-field>
+				</form>
+			</mat-card-content>
+			<div class="footer">
+				<button mat-stroked-button (click)="register()">Register</button>
+				<button mat-flat-button color='primary' [disabled]="!isFormValid() || loading" (click)="login()">
+					<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+					Login
+				</button>
+			</div>
+		</mat-card>
+	</div>
+</div>

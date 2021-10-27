@@ -1,0 +1,2 @@
+## Use this command to create the database entities
+ Scaffold-DbContext "Server=sqldb-sde.hastings-network.com;Database=sqldb-sde-dev;User Id=svc-sde-dev;Password=W3HUOsZI9GJ4QsPIfgmT" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Domain\Entities" -force -UseDatabaseNames -NoPluralize
