@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   flex: 1;
+  background-image: var(--gradient-900);
 }
 
 .container {
@@ -11,6 +12,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+ 
 }
 
 .form-container {
@@ -20,12 +22,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .form {
   display: flex;
   flex-direction: column;
   max-width: 500px;
+  box-shadow: var(--drop-shadow-2);
 }
 
 .footer {

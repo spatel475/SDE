@@ -32,11 +32,8 @@ namespace SDE_Server.Domain.Repositories
             {
                 ID = user.ID,
                 Email = user.Email,
-                Username = user.Username,
-                Organization = new OrganizationModel
-                {
-                    ID = user.OrganizationID.Value
-                }
+                Username = user.Username, 
+                Organization = OrganizationModel.MapFromEntity(user.Organization)
             }).FirstOrDefaultAsync(u => u.Email == email);
         }
 
@@ -45,9 +42,9 @@ namespace SDE_Server.Domain.Repositories
             IdentityUser iUser = await CreateIdentityUserAsync(user);
             Users newUser = new()
             {
-                Username = iUser.UserName,
-                Email = iUser.Email,
-                OrganizationID = user.Organization?.ID
+                Username = user.Username,
+                Email = user.Email,
+                OrganizationID = user.Organization.ID
             };
 
             await _dbContext.Users.AddAsync(newUser);

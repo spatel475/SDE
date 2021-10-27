@@ -127,7 +127,7 @@ export class RegisterComponent implements OnInit {
 		this.toastr.clear();
 		this.submitted = true;
 		this.loading = true;
-		this.toastr.error('Registration Successful');
+		this.toastr.success('Registration Successful');
 	}
 
 	private onUnsuccessfulRegister() {

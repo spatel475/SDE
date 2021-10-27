@@ -1,0 +1,44 @@
+<div class="view-wrapper">
+	<div class="pdf-wrapper">
+		<pdf-viewer [show-borders]="false" [original-size]="false" [autoresize]="'true'" [page]="1"
+			[src]="'data:application/pdf;base64, ' + this.document.template.templateData.template" [render-text]="true">
+		</pdf-viewer>
+	</div>
+	<div class="info-card-wrapper">
+		<div *ngIf="this.state == 'edit'" class="info-card">
+			<mat-form-field appearance="legacy">
+				<mat-label>Title</mat-label>
+				<input matInput [(ngModel)]="this.document.title" name="Title">
+			</mat-form-field>
+			<mat-form-field appearance="legacy">
+				<mat-label>Template Name</mat-label>
+				<input matInput value="Test Release" name="Title">
+			</mat-form-field>
+			<mat-form-field appearance="legacy">
+				<mat-label>Creation Date</mat-label>
+				<input matInput [value]="formatDate(this.document.creationDate)" name="Title">
+			</mat-form-field>
+			<div class="date"></div>
+		</div>
+
+		<div *ngIf="this.state == 'view'" class="info-card">
+			<div class="info-item">
+				<div class="info-item-label">Title</div>
+				<div class="info-item-value">{{this.document.title}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Template Name</div>
+				<div class="info-item-value">Test Release</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Creation Date</div>
+				<div class="info-item-value">{{formatDate(this.document.creationDate)}}</div>
+			</div>
+
+			<div class="date"></div>
+		</div>
+	</div>
+
+</div>

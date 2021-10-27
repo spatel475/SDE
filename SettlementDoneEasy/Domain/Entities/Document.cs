@@ -14,9 +14,11 @@ namespace SDE_Server.Domain.Entities
         }
 
         public int ID { get; set; }
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         public string Data { get; set; }
-        public int? TemplateID { get; set; }
+        public int TemplateID { get; set; }
+        public string Title { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public virtual DocumentTemplate Template { get; set; }
         public virtual Users User { get; set; }
