@@ -41,7 +41,7 @@ namespace SDE_Server.API.Controllers
             await _documentRepository.Delete(docId);
         }
 
-        [HttpGet("GetDocumentsByUser")]
+        [HttpGet("GetDocumentsByUser/{userId}")]
         public async Task<List<DocumentModel>> GetDocumentsByUser(int userId)
         {
             return await _documentRepository.GetDocumentsByUser(userId);

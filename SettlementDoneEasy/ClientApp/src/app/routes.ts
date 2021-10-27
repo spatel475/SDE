@@ -16,6 +16,7 @@ export const AppRoutes: Routes = [
 		pathMatch: "full",
 		canActivate: [AuthGuard],
 	},
+	{ path: "register", component: RegisterComponent },
 	{ path: "**", redirectTo: "" },
 
 ];
