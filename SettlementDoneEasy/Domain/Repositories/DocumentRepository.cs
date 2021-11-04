@@ -65,6 +65,30 @@ namespace SDE_Server.Domain.Repositories
             return docs.Select(d => DocumentModel.MapFromEntity(d)).ToList();
         }
 
+        internal bool ChangeState(DocumentModel document, int trigger)
+        {
+            var lastAudit = document.GetLatestAudit();
+            ReleaseMachine stateMachine = ReleaseMachine.FromJson(lastAudit.FlowState);
+
+            if (!stateMachine.CanFire((ReleaseTrigger)trigger))
+                return false;
+
+            stateMachine.Fire((ReleaseTrigger)trigger);
+
+            var audit = new DocumentAudit() {
+                CreationDate = DateTime.Now,
+                Description = "Document State Changed",
+                DocID = document.ID,
+                FlowState = stateMachine.ToJson(),
+                State = (int)stateMachine.State
+            };
+
+            _dbContext.Add(audit);
+            _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
         private async Task<DocumentDataModel> GetDocumentData(int docId)
         {
             DocumentData documentData = await _dbContext.DocumentData.FirstOrDefaultAsync(d => d.ID == docId);

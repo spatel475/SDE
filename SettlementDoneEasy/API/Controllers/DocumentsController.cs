@@ -46,5 +46,11 @@ namespace SDE_Server.API.Controllers
         {
             return await _documentRepository.GetDocumentsByUser(userId);
         }
+
+        [HttpPost("ChangeState/{newState}")]
+        public async Task<bool> ChangeState(DocumentModel document, int trigger)
+        {
+            return _documentRepository.ChangeState(document, trigger);
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace SDE_Server.Domain.ReleaseStatemachine
 
         private void OnTransition(StateMachine<ReleaseState, ReleaseTrigger>.Transition obj)
         {
-            
+
         }
 
         private ReleaseContext GetStateContext()
@@ -41,7 +41,7 @@ namespace SDE_Server.Domain.ReleaseStatemachine
         }
 
         private void Configure()
-        {   
+        {
             Statemachine = new StateMachine<ReleaseState, ReleaseTrigger>(ReleaseState.P1_Draft);
 
             Statemachine.OnTransitionCompleted(OnTransition);
@@ -74,6 +74,18 @@ namespace SDE_Server.Domain.ReleaseStatemachine
                 .Permit(ReleaseTrigger.Reject, ReleaseState.P1_Rejected)
                 .Permit(ReleaseTrigger.Accept, ReleaseState.P1_Complete);
         }
+
+        public bool CanFire(ReleaseTrigger trigger)
+        {
+            return this.Statemachine.CanFire(trigger);
+        }
+
+        public void Fire(ReleaseTrigger trigger)
+        {
+           this.Statemachine.Fire(trigger);
+        }
+
+        public ReleaseState State => Statemachine.State;
 
         public string ToDotMap()
         {

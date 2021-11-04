@@ -51,5 +51,10 @@ namespace SDE_Server.Models.Document
                 Template = DocumentTemplateModel.MapFromEntity(entity.Template)
             };
         }
+
+        public DocumentAuditModel GetLatestAudit()
+        {
+            return this.Audits.OrderByDescending(x => x.CreationDate).FirstOrDefault();
+        }
     }
 }
