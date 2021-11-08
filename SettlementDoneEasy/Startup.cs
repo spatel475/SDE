@@ -6,11 +6,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using EmailService;
 using SDE_Server.Domain.Entities;
 using SDE_Server.Domain.Entities.Auth;
 using SDE_Server.Domain.Repositories;
 using SDE_Server.Hubs;
 using SDE_Server.JWT;
+
+
+
 
 namespace SDE_Server
 {
@@ -27,6 +39,18 @@ namespace SDE_Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
+
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -92,6 +116,7 @@ namespace SDE_Server
             }
 
             app.UseRouting();
+            app.UseAuthorization();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseEndpoints(endpoints =>
             {
@@ -103,6 +128,11 @@ namespace SDE_Server
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+            });
+
+                        app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
 
             //app.UseSpa(spa =>

@@ -15,6 +15,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "MailApp": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "localhost",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+    },
     "SDE_Server": {
       "commandName": "Project",
       "launchBrowser": true,
