@@ -69,15 +69,15 @@
 			<div class="side-bar-widget">
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">home</mat-icon>
-					<span class="action-content" (click)="changePageState('Active')">Active Documents</span>
+					<span class="action-content" (click)="pageStateActive()">Active Documents</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">description</mat-icon>
-					<span class="action-content" (click)="changePageState('Draft')">Drafts Documents</span>
+					<span class="action-content" (click)="pageStateDraft()">Drafts Documents</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">archive</mat-icon>
-					<span class="action-content" (click)="changePageState('Archive')">Archived Documents</span>
+					<span class="action-content" (click)="pageStateArchived()">Archived Documents</span>
 				</div>
 			</div>
 
@@ -88,11 +88,11 @@
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">description</mat-icon>
-					<span class="action-content" (click)="changePageState('Draft')">Option #1</span>
+					<span class="action-content" (click)="pageStateDraft()">Option #1</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">home</mat-icon>
-					<span class="action-content" (click)="changePageState('Archive')">Option #2</span>
+					<span class="action-content" (click)="pageStateArchived()">Option #2</span>
 				</div>
 			</div>
 		</div>
