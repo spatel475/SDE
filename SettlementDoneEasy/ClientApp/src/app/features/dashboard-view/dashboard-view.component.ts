@@ -58,7 +58,9 @@ export class DashboardViewComponent implements OnInit {
 	changePageState(title: string) {
 		this.pageState = title;
 	}
-	pageStateActive() { // states 1 - 7
+
+	pageStateActive() { // states 1 - 7 The Page state methods assume that the values are explored by looping 
+		//through two nest arrays.
 		var i: number;
 		var j: number;
 
