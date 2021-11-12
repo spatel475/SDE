@@ -14,7 +14,7 @@ export class DocumentService {
 	}
 
 	public GetDocuments(userId: number): Promise<DocumentModel[]> {
-		return this.apiService.get<DocumentModel[]>("Documents/GetDocumentsByUser?", userId).toPromise();
+		return this.apiService.get<DocumentModel[]>("Documents/GetDocumentsByUser", userId).toPromise();
 	}
 
 	public Create(document: DocumentModel, userId: number): Promise<any> {

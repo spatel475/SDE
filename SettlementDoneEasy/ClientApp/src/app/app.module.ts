@@ -16,6 +16,9 @@ import { UIModule } from "./ui-module";
 import { DocumentManagementModule } from "./features/document-management/document-management.module";
 import { DashboardViewModule } from "./features/dashboard-view/dashboard-view.module";
 
+import { MessageService } from "./services/message.service";
+
+
 @NgModule({
 	imports: [
 		BrowserModule,
@@ -37,7 +40,9 @@ import { DashboardViewModule } from "./features/dashboard-view/dashboard-view.mo
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    MessageService,
+
 	],
 	bootstrap: [AppComponent],
 })

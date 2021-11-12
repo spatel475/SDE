@@ -24,6 +24,7 @@ export class DashboardViewComponent implements OnInit {
 	ngOnInit(): void {
 		this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
 			console.log(x);
+			console.log(this.appData.getUser().id);
 			this.visibleDocuments = x;
 		});
 	}
