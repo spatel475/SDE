@@ -14,7 +14,7 @@ export class DashboardViewComponent implements OnInit {
 
 	public pageState = "Active Documents";
 	public visibleDocuments: DocumentModel[];
-	public bufferedDocuments: DocumentModel[];
+	public bufferedDocuments: DocumentModel[] = [];
 	//sort based off of state number of the documents
 	// state number is ' public state: number;' from DocumentAuditModel.ts
 	// work on state for drafts and state for actives ( 0 is draft, 1 -7 is active)
@@ -31,7 +31,7 @@ export class DashboardViewComponent implements OnInit {
 			console.log(x);
 			console.log(this.appData.getUser().id);
 			this.visibleDocuments = x;
-			this.bufferedDocuments = x;
+			//this.bufferedDocuments = x;
 		});
 	}
 
@@ -41,11 +41,12 @@ export class DashboardViewComponent implements OnInit {
 		this.documentService.Create(doc, this.appData.getUser().id).then(fuck => this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
 			console.log(x);
 			this.visibleDocuments = x;
-			this.bufferedDocuments = x;
+			//this.bufferedDocuments = x;
 		}));
 
 
 	}
+
 
 	selectDocument(document: DocumentModel) {
 		this.selectedDocuments.push(document);
@@ -64,12 +65,14 @@ export class DashboardViewComponent implements OnInit {
 		var i: number;
 		var j: number;
 
-		for (i = 0; i < (this.bufferedDocuments.length - 1); i++) { // DocumentModel Array
-			for (j = 1; j <= 7; j++) {// DocumentAuditModel Array
-				if (this.bufferedDocuments[i].audits[j].state > 0 && this.bufferedDocuments[i].audits[j].state < 8) {
-					this.visibleDocuments = this.bufferedDocuments;
-					console.log();
-
+		for (i = 0; i < (this.visibleDocuments.length - 1); i++) { // DocumentModel Array
+			for (j = 1; j <= 7; j++) {// DocumentAuditModel Array Assuming active is 1 through 7
+				if (this.visibleDocuments[i].audits[j].state > 0 && this.visibleDocuments[i].audits[j].state < 8) {
+					this.documentService.Create(this.visibleDocuments[i], this.appData.getUser().id).then(fuck => this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
+						console.log(x);
+						this.bufferedDocuments = x;
+					}));
+					this.visibleDocuments[i] = this.bufferedDocuments[i];
 				}
 			}
 
@@ -81,11 +84,14 @@ export class DashboardViewComponent implements OnInit {
 		var i: number;
 		var j: number;
 
-		for (i = 0; i < (this.bufferedDocuments.length - 1); i++) { // DocumentModel Array
+		for (i = 0; i < (this.visibleDocuments.length - 1); i++) { // DocumentModel Array
 			for (j = 8; j <= 9; j++) {// DocumentAuditModel Array
-				if (this.bufferedDocuments[i].audits[j].state > 0 && this.bufferedDocuments[i].audits[j].state < 8) {
-					this.visibleDocuments = this.bufferedDocuments;
-					console.log();
+				if (this.visibleDocuments[i].audits[j].state > 0 && this.visibleDocuments[i].audits[j].state < 8) {
+					this.documentService.Create(this.visibleDocuments[i], this.appData.getUser().id).then(fuck => this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
+						console.log(x);
+						this.bufferedDocuments = x;
+					}));
+					this.visibleDocuments[i] = this.bufferedDocuments[i];
 
 				}
 			}
@@ -98,12 +104,15 @@ export class DashboardViewComponent implements OnInit {
 		var i: number;
 		var j: number;
 
-		for (i = 0; i < (this.bufferedDocuments.length - 1); i++) { // DocumentModel Array
+		for (i = 0; i < (this.visibleDocuments.length - 1); i++) { // DocumentModel Array
 			for (j = 0; j <= 0; j++) {// DocumentAuditModel Array
-				if (this.bufferedDocuments[i].audits[j].state == 0) {
+				if (this.visibleDocuments[i].audits[j].state == 0) {
 					this.visibleDocuments = this.bufferedDocuments;
-					console.log();
-
+					this.documentService.Create(this.visibleDocuments[i], this.appData.getUser().id).then(fuck => this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
+						console.log(x);
+						this.bufferedDocuments = x;
+					}));
+					this.visibleDocuments[i] = this.bufferedDocuments[i];
 				}
 			}
 
