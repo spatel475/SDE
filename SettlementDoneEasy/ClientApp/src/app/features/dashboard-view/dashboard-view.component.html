@@ -62,25 +62,22 @@
 	</div>
 
 
-
 	<div *ngIf="this.selectedDocuments.length == 0" class="content-wrapper">
-		<!-- LeDarrius - 
-			Not certain if the buttons work as intened for changing the view . Tried to test with the current build
-		but I saw no noticeable affect on the screen-->
+		<!-- LeDarrius -->
 
 		<div class="side-bar-nav">
 			<div class="side-bar-widget">
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">home</mat-icon>
-					<span class="action-content" (click)="pageStateActive()">Active Documents</span>
+					<span class="action-content" (click)="pageStateChange('active')">Active Documents</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">description</mat-icon>
-					<span class="action-content" (click)="pageStateDraft()">Drafts Documents</span>
+					<span class="action-content" (click)="pageStateChange('drafts')">Drafts Documents</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">archive</mat-icon>
-					<span class="action-content" (click)="pageStateArchived()">Archived Documents</span>
+					<span class="action-content" (click)="pageStateChange('archived')">Archived Documents</span>
 				</div>
 			</div>
 
@@ -91,11 +88,11 @@
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">description</mat-icon>
-					<span class="action-content" (click)="pageStateDraft()">Option #1</span>
+					<span class="action-content" (click)="$">Option #1</span>
 				</div>
 				<div class="side-bar-widget-action">
 					<mat-icon class="action-icon">home</mat-icon>
-					<span class="action-content" (click)="pageStateArchived()">Option #2</span>
+					<span class="action-content" (click)="$">Option #2</span>
 				</div>
 			</div>
 		</div>
