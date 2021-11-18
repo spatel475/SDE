@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DocumentModel } from '../models/DocumentModel';
+import { ReleaseTrigger } from '../models/releaseTrigger';
+import { StatemachineService } from './statemachine.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,7 +11,7 @@ export class DocumentService {
 
 
 
-	constructor(public apiService: ApiService) {
+	constructor(public apiService: ApiService, private statemachine: StatemachineService) {
 
 	}
 
@@ -21,13 +23,8 @@ export class DocumentService {
 		document.userId = userId;
 		document.creationDate = new Date();
 		document.templateID = 1;
-
 		document.audits = [];
-
-
 		console.log(document);
-
-
 		return this.apiService.post("Documents/Create", document).toPromise()
 	}
 
@@ -36,6 +33,8 @@ export class DocumentService {
 		return this.apiService.post<DocumentModel>("Documents/Update", document).toPromise();
 	}
 
-
+	public ChangeState(document, trigger: ReleaseTrigger) {
+		this.statemachine.ChangeState(document, trigger);
+	}
 
 }

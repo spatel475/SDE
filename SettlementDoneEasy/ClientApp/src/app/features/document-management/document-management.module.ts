@@ -8,6 +8,7 @@ import { DocumentCardComponent } from './components/document-card/document-card.
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
+import { StatemachineService } from './services/statemachine.service';
 
 
 @NgModule({
