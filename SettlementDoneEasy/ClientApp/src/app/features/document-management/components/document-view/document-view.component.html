@@ -39,6 +39,50 @@
 
 			<div class="date"></div>
 		</div>
+
+		<div *ngIf="this.state == 'view'" class="info-card">
+			<div class="info-item">
+				<div class="info-item-label">Claim #</div>
+				<div class="info-item-value">{{this.document.data.ClaimNum}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Claimant’s name</div>
+				<div class="info-item-value">{{this.document.data.ClaimantName}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Settlement Amount</div>
+				<div class="info-item-value">{{this.document.data.SettlementAmount}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Insured's Name</div>
+				<div class="info-item-value">{{this.document.data.InsuredName}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Date of Accident</div>
+				<div class="info-item-value">{{this.formatDate(this.document.data.DateOfAccident)}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Place of Accident</div>
+				<div class="info-item-value">{{this.document.data.PlaceOfAccident}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Law firm Tax ID</div>
+				<div class="info-item-value">{{this.document.data.LawFirmTaxID}}</div>
+			</div>
+
+			<div class="info-item">
+				<div class="info-item-label">Lawyer Name</div>
+				<div class="info-item-value">{{this.document.data.LawyerName}}</div>
+			</div>
+
+			<div class="date"></div>
+		</div>
 	</div>
 
 </div>

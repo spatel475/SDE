@@ -1,0 +1,96 @@
+<div class="content-wrapper" mat-dialog-content>
+	<mat-accordion>
+		<mat-expansion-panel expanded="true">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Transfer Info
+				</mat-panel-title>
+				<mat-panel-description>
+					Information about the document transfer
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+
+			<mat-form-field appearance="legacy">
+				<mat-label>Sender</mat-label>
+				<input matInput [(ngModel)]="this.data.Sender" [disabled]="true">
+			</mat-form-field>
+			<mat-form-field appearance="legacy">
+				<mat-label>Receiver</mat-label>
+				<input matInput [(ngModel)]="this.data.Receiver">
+			</mat-form-field>
+
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Document Info
+				</mat-panel-title>
+				<mat-panel-description>
+					Information for displaying document
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+
+			<mat-form-field appearance="legacy">
+				<mat-label>Title</mat-label>
+				<input matInput [(ngModel)]="this.data.DocTitle">
+			</mat-form-field>
+
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Release Information
+				</mat-panel-title>
+				<mat-panel-description>
+					Release specific information
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+			<div class="input-grid">
+				<mat-form-field appearance="legacy">
+					<mat-label>Claim #</mat-label>
+					<input matInput type="number" [(ngModel)]="this.data.ClaimNum">
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Claimant's Name</mat-label>
+					<input matInput type="text" [(ngModel)]="this.data.ClaimantName">
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Settlement Amount</mat-label>
+					<input matInput type="number" [(ngModel)]="this.data.SettlementAmount">
+					<span matPrefix>$&nbsp;</span>
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Insured's Name</mat-label>
+					<input matInput type="text" [(ngModel)]="this.data.InsuredName">
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Date of Accident</mat-label>
+					<input matInput [(ngModel)]="this.data.DateOfAccident" [matDatepicker]="picker">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Place of Accident</mat-label>
+					<input matInput type="text" [(ngModel)]="this.data.PlaceOfAccident">
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Law Firm Tax ID</mat-label>
+					<input matInput type="number" [(ngModel)]="this.data.LawFirmTaxID">
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Lawyer's Name</mat-label>
+					<input matInput type="text" [(ngModel)]="this.data.LawyerName">
+				</mat-form-field>
+
+			</div>
+
+		</mat-expansion-panel>
+
+	</mat-accordion>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

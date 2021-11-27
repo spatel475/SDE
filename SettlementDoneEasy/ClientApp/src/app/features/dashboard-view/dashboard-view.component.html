@@ -135,6 +135,10 @@
 					<mat-icon class="action-icon">file_download</mat-icon>
 					<span class="action-content">Download</span>
 				</div>
+				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
+					<mat-icon class="action-icon">send</mat-icon>
+					<span class="action-content">Transmit</span>
+				</div>
 			</div>
 		</div>
 

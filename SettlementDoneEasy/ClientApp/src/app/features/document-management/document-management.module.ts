@@ -9,6 +9,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
 import { StatemachineService } from './services/statemachine.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { StatemachineService } from './services/statemachine.service';
 		MatInputModule,
 		FormsModule,
 		PdfViewerModule,
+		MatDialogModule,
+		MatFormFieldModule
 	],
 	exports: [
 		DocumentGridComponent,
