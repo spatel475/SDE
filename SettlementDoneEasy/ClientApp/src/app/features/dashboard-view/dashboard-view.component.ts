@@ -6,6 +6,8 @@ import { DocumentService } from '../document-management/services/document.servic
 import { MatDialog } from '@angular/material/dialog';
 import { DocumentCreateDialogComponent, DocumentCreateDialogData } from './components/document-create-dialog/document-create-dialog.component';
 import { DocumentData } from '../document-management/models/DocumentData';
+import { StatemachineService } from '../document-management/services/statemachine.service';
+import { ReleaseStateInfo } from '../document-management/models/ReleaseStateInfo';
 
 
 @Component({
@@ -16,8 +18,8 @@ export class DashboardViewComponent implements OnInit {
 
 	public pageState = "Active Documents";
 	public visibleDocuments: DocumentModel[];
-
 	public selectedDocuments: DocumentModel[] = [];
+	public selectedDocumentStateInfo: ReleaseStateInfo;
 
 	constructor(
 		public accountService: AccountService,
@@ -27,10 +29,19 @@ export class DashboardViewComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.GetDocuments();
+	}
+
+	private GetDocuments() {
 		this.documentService.GetDocuments(this.appData.getUser().id).then(x => {
-			console.log(x);
-			console.log(this.appData.getUser().id);
 			this.visibleDocuments = x;
+		});
+	}
+
+	private GetDocumentStateInfo() {
+		this.documentService.GetStateInfo(this.selectedDocuments[0]).then(x => {
+			console.log(x);
+			this.selectedDocumentStateInfo = x;
 		});
 	}
 
@@ -80,7 +91,12 @@ export class DashboardViewComponent implements OnInit {
 	}
 
 	selectDocument(document: DocumentModel) {
+		console.log("SELECTED DOCUMENT: ", document);
 		this.selectedDocuments.push(document);
+		this.documentService.GetStateInfo(document).then(x => {
+			console.log(x);
+			this.selectedDocumentStateInfo = x;
+		});
 	}
 
 	clearDocumentSelection() {
@@ -96,9 +112,47 @@ export class DashboardViewComponent implements OnInit {
 		this.documentService.Update(this.selectedDocuments[0]);
 	}
 
+	transmitDocument() {
+		this.documentService.ChangeState(this.selectedDocuments[0], 2).then(x => {
+			if (x) {
+				this.GetDocumentStateInfo();
+				this.GetDocuments();
+				this.clearDocumentSelection();
+			}
+		});
+	}
+
+	acceptDocument() {
+		this.documentService.ChangeState(this.selectedDocuments[0], 3).then(x => {
+			if (x) {
+				this.GetDocumentStateInfo();
+				this.GetDocuments();
+				this.clearDocumentSelection();
+			}
+		});
+	}
+
+	rejectDocument() {
+		this.documentService.ChangeState(this.selectedDocuments[0], 4).then(x => {
+			if (x) {
+				this.GetDocumentStateInfo();
+				this.GetDocuments();
+				this.clearDocumentSelection();
+			}
+		});
+	}
+
+
 	logout() {
 		console.log("Logout Pressed");
 		this.accountService.logout();
+	}
+
+	isTrigger(trig: number): boolean {
+		if (this.selectedDocumentStateInfo.availableTriggers.filter(x => x.triggerId == trig).length > 0) {
+			return true;
+		}
+		return false;
 	}
 }
 function DocumentCreateDialog(DocumentCreateDialog: any) {

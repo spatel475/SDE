@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using SDE_Server.Domain.ReleaseStatemachine;
 using SDE_Server.Domain.Repositories;
 using SDE_Server.Hubs;
+using SDE_Server.Models;
 using SDE_Server.Models.Document;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -47,10 +49,16 @@ namespace SDE_Server.API.Controllers
             return await _documentRepository.GetDocumentsByUser(userId);
         }
 
-        [HttpPost("ChangeState/{newState}")]
+        [HttpPost("ChangeState")]
         public async Task<bool> ChangeState(DocumentModel document, int trigger)
         {
             return _documentRepository.ChangeState(document, trigger);
+        }
+
+        [HttpPost("GetStateInfo")]
+        public async Task<ReleaseStateInfo> GetStateInfo([FromBody] DocumentModel document)
+        {
+            return await _documentRepository.GetStateInfo(document, null);
         }
     }
 }

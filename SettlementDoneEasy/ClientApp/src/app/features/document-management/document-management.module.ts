@@ -11,6 +11,7 @@ import { DocumentViewComponent } from './components/document-view/document-view.
 import { StatemachineService } from './services/statemachine.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 		FormsModule,
 		PdfViewerModule,
 		MatDialogModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		MatExpansionModule,
 	],
 	exports: [
 		DocumentGridComponent,

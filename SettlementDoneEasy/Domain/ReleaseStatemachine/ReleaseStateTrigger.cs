@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,14 @@ namespace SDE_Server.Domain.ReleaseStatemachine
 {
     public class ReleaseStateTrigger
     {
-        public int Id { get; set; }
+        public ReleaseStateTrigger(int triggerId, string label, string desc)
+        {
+            this.TriggerId = triggerId;
+            this.Label = label;
+            this.Description = desc;
+        }
+
+        public int TriggerId { get; set; }
         public string Label { get; set; }
         public string Description { get; set; }
         

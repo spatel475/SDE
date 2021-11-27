@@ -5,6 +5,77 @@
 		</pdf-viewer>
 	</div>
 	<div class="info-card-wrapper">
+		<!-- <mat-accordion>
+	
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Document Info
+					</mat-panel-title>
+					<mat-panel-description>
+						Information for displaying document
+					</mat-panel-description>
+				</mat-expansion-panel-header>
+	
+				<mat-form-field appearance="legacy">
+					<mat-label>Title</mat-label>
+					<input matInput [(ngModel)]="this.document.title">
+				</mat-form-field>
+	
+			</mat-expansion-panel>
+	
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Release Information
+					</mat-panel-title>
+					<mat-panel-description>
+						Release specific information
+					</mat-panel-description>
+				</mat-expansion-panel-header>
+				<div class="input-grid">
+					<mat-form-field appearance="legacy">
+						<mat-label>Claim #</mat-label>
+						<input matInput type="number" [(ngModel)]="this.data.ClaimNum">
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Claimant's Name</mat-label>
+						<input matInput type="text" [(ngModel)]="this.data.ClaimantName">
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Settlement Amount</mat-label>
+						<input matInput type="number" [(ngModel)]="this.data.SettlementAmount">
+						<span matPrefix>$&nbsp;</span>
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Insured's Name</mat-label>
+						<input matInput type="text" [(ngModel)]="this.data.InsuredName">
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Date of Accident</mat-label>
+						<input matInput [(ngModel)]="this.data.DateOfAccident" [matDatepicker]="picker">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Place of Accident</mat-label>
+						<input matInput type="text" [(ngModel)]="this.data.PlaceOfAccident">
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Law Firm Tax ID</mat-label>
+						<input matInput type="number" [(ngModel)]="this.data.LawFirmTaxID">
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Lawyer's Name</mat-label>
+						<input matInput type="text" [(ngModel)]="this.data.LawyerName">
+					</mat-form-field>
+	
+				</div>
+	
+			</mat-expansion-panel>
+	
+		</mat-accordion> -->
+
 		<div *ngIf="this.state == 'edit'" class="info-card">
 			<mat-form-field appearance="legacy">
 				<mat-label>Title</mat-label>
@@ -80,6 +151,52 @@
 				<div class="info-item-label">Lawyer Name</div>
 				<div class="info-item-value">{{this.document.data.LawyerName}}</div>
 			</div>
+
+			<div class="date"></div>
+		</div>
+
+
+		<div *ngIf="this.state == 'edit'" class="info-card">
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Claim #</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.ClaimNum" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Claimant’s name</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.ClaimantName" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Settlement Amount</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.SettlementAmount" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Insured's Name</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.InsuredName" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Date of Accident</mat-label>
+				<input class="info-item-value" matInput [ngModel]="this.formatDate(this.document.data.DateOfAccident)"
+					(ngModelChange)="this.document.data.DateOfAccident = $event" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Place of Accident</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.PlaceOfAccident" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Law firm Tax ID</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.LawFirmTaxID" name="Title">
+			</mat-form-field>
+
+			<mat-form-field class="info-item" appearance="legacy">
+				<mat-label class="info-item-label">Lawyer Name</mat-label>
+				<input class="info-item-value" matInput [(ngModel)]="this.document.data.LawyerName" name="Title">
+			</mat-form-field>
 
 			<div class="date"></div>
 		</div>

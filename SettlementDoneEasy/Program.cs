@@ -21,18 +21,17 @@ namespace SDE_Server
 
             //using (var db = new SDEDBContext())
             //{
-            //    //db.DocumentTemplateData.Add(new DocumentTemplateData()
-            //    //{
-            //    //    TemplateID=1,
-            //    //    Template = File.ReadAllBytes("C:\\Users\\blakehastings\\Downloads\\example-release.pdf")
-            //    //});
+            //    db.DocumentTemplateData.Add(new DocumentTemplateData()
+            //    {
+            //        TemplateID = 2,
+            //        Template = File.ReadAllBytes("C:\\Users\\blakehastings\\Downloads\\example-release.pdf")
+            //    });
 
-            //    Console.WriteLine(Convert.ToBase64String(db.DocumentTemplateData.Where(x => x.TemplateID == 1).FirstOrDefault().Template));
-
-            //    //db.SaveChanges();
+                
+            //    db.SaveChanges();
             //}
 
-                CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -15,7 +15,9 @@ export class DocumentViewComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		console.log(document);
+		console.log("DocumentViewComponent")
+		console.log(this.document.data);
+		this.document.data = JSON.parse(this.document.data);
 	}
 
 	formatDate(date: Date) {

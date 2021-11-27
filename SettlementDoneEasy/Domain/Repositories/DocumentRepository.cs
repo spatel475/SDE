@@ -65,6 +65,14 @@ namespace SDE_Server.Domain.Repositories
             return docs.Select(d => DocumentModel.MapFromEntity(d)).ToList();
         }
 
+        public async Task<ReleaseStateInfo>GetStateInfo(DocumentModel document, string userEmail)
+        {
+            var lastAudit = document.GetLatestAudit();
+            ReleaseMachine stateMachine = ReleaseMachine.FromJson(lastAudit.FlowState);
+
+            return stateMachine.GetStateInfo();
+        }
+
         internal bool ChangeState(DocumentModel document, int trigger)
         {
             var lastAudit = document.GetLatestAudit();
@@ -74,10 +82,12 @@ namespace SDE_Server.Domain.Repositories
                 return false;
 
             stateMachine.Fire((ReleaseTrigger)trigger);
+            stateMachine.Triggers.TryGetValue((ReleaseTrigger)trigger, out ReleaseStateTrigger triggerInfo);
+
 
             var audit = new DocumentAudit() {
                 CreationDate = DateTime.Now,
-                Description = "Document State Changed",
+                Description = triggerInfo.Description,
                 DocID = document.ID,
                 FlowState = stateMachine.ToJson(),
                 State = (int)stateMachine.State

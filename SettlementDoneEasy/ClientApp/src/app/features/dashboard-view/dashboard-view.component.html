@@ -100,7 +100,8 @@
 
 		<div class="content">
 			<div class="document-grid">
-				<document-card *ngFor="let x of visibleDocuments" (click)="selectDocument(x)" [Document]="x"></document-card>
+				<document-card *ngFor="let x of visibleDocuments" (click)="this.selectDocument(x)" [Document]="x">
+				</document-card>
 			</div>
 			<!-- <document-grid [title]="this.pageState"></document-grid> -->
 		</div>
@@ -116,28 +117,33 @@
 				</div>
 			</div>
 
-			<div class="side-bar-widget grid">
-				<div #edit_action class="side-bar-widget-action"
+			<div class="side-bar-widget grid" *ngIf="this.selectedDocumentStateInfo">
+
+				<div *ngIf="isTrigger(0)" #edit_action class="side-bar-widget-action"
 					(click)="document_view.state = 'edit'; save_action.hidden = false; edit_action.hidden=true">
 					<mat-icon class="action-icon">edit</mat-icon>
 					<span class="action-content">Edit</span>
 				</div>
-				<div [hidden]="true" #save_action class="side-bar-widget-action"
+				<div *ngIf="isTrigger(1)" #save_action class="side-bar-widget-action"
 					(click)="document_view.state = 'view'; edit_action.hidden = false; save_action.hidden = true; this.saveDocument()">
 					<mat-icon class="action-icon">save</mat-icon>
 					<span class="action-content">Save</span>
 				</div>
-				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
+				<div *ngIf="isTrigger(5)" class="side-bar-widget-action" (click)="a">
 					<mat-icon class="action-icon">delete</mat-icon>
 					<span class="action-content">Delete</span>
 				</div>
-				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
-					<mat-icon class="action-icon">file_download</mat-icon>
-					<span class="action-content">Download</span>
-				</div>
-				<div *ngIf="!edit_action.hidden" class="side-bar-widget-action" (click)="a">
+				<div *ngIf="isTrigger(2)" class="side-bar-widget-action" (click)="this.transmitDocument()">
 					<mat-icon class="action-icon">send</mat-icon>
 					<span class="action-content">Transmit</span>
+				</div>
+				<div *ngIf="isTrigger(3)" class="side-bar-widget-action" (click)="this.acceptDocument()">
+					<mat-icon class="action-icon">thumb_up</mat-icon>
+					<span class="action-content">Accept</span>
+				</div>
+				<div *ngIf="isTrigger(4)" class="side-bar-widget-action" (click)="this.transmitDocument()">
+					<mat-icon class="action-icon">thumb_down</mat-icon>
+					<span class="action-content">Reject</span>
 				</div>
 			</div>
 		</div>
