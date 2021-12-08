@@ -55,7 +55,7 @@ namespace SDE_Server.Domain.Repositories
         {
             List<Document> docs =
                 await _dbContext.Document
-                    .Where(d => d.UserID == userId)
+                    //.Where(d => d.UserID == userId)
                     .Include(doc => doc.DocumentAudit)
                     .Include(doc => doc.DocumentData)
                     .Include(doc => doc.DocumentUser)

@@ -113,9 +113,6 @@ document-view {
 	flex-direction: row;
 	flex-grow: 1;
 	flex-shrink: 0;
-	border-width: 1px;
-	border-style: solid;
-	border-color: red;
 	padding: 15px;
 }
 

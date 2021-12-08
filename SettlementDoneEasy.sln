@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{53015554-C421-4698-BE48-F2D440E53A29}"
 	ProjectSection(SolutionItems) = preProject
 		CreateDatabaseEntities.md = CreateDatabaseEntities.md
+		EnvironmentSetup.md = EnvironmentSetup.md
 	EndProjectSection
 EndProject
 Global
